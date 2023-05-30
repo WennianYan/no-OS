@@ -1,0 +1,290 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>MAX22190 no-OS driver &#8212; no-OS  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="MAX22196 no-OS driver" href="max22196.html" />
+    <link rel="prev" title="MAX149X6 no-OS driver" href="max149x6.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="max22190-no-os-driver">
+<h1>MAX22190 no-OS driver<a class="headerlink" href="#max22190-no-os-driver" title="Permalink to this headline">¶</a></h1>
+<section id="supported-devices">
+<h2>Supported Devices<a class="headerlink" href="#supported-devices" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://www.analog.com/MAX22190">MAX22190</a></p>
+</section>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The MAX22190 is an IEC 61131-2 compliant industrial digital input device.
+The MAX22190 translates eight, 24V current-sinking, industrial inputs to a
+serialized SPI-compatible output that interfaces with 3V to 5.5V logic.
+A current setting resistor allows the MAX22190 to be configured for Type 1,
+Type 2, or Type 3 inputs. Field wiring is verified for proximity switches,
+by a second threshold detector on each input. When wire-break is enabled,
+the active-low FAULT output is asserted and a register flag is set if the
+input current drops below the wire-break threshold for more than 20ms.
+Additional diagnostics that assert the active-ow FAULT pin include:
+overtemperature, low 24V field supply, 24V field supply missing,
+CRC communication error, etc.</p>
+</section>
+<section id="applications">
+<h2>Applications<a class="headerlink" href="#applications" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id1">
+<h2>MAX22190<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Building Automation</p></li>
+<li><p>Industrial Automation</p></li>
+<li><p>Process Automation</p></li>
+<li><p>Programmable Logic Controllers</p></li>
+</ul>
+</section>
+<section id="max22190-device-configuration">
+<h2>MAX22190 Device Configuration<a class="headerlink" href="#max22190-device-configuration" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="driver-initialization">
+<h2>Driver Initialization<a class="headerlink" href="#driver-initialization" title="Permalink to this headline">¶</a></h2>
+<p>In order to be able to use the device, you will have to provide the support
+for the communication protocol (SPI).</p>
+<p>The first API to be called is <strong>max22190_init</strong>. Make sure that it returns 0,
+which means that the driver was initialized correctly.</p>
+</section>
+<section id="channel-configuration">
+<h2>Channel Configuration<a class="headerlink" href="#channel-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Each channel’s state can be set with the <strong>max22190_chan_state</strong> API.
+The user can also set a wire break detection for the channel with
+<strong>max22190_wbe_set</strong> API, and read the Wire Break state with
+<strong>max22190_wbe_get</strong> API.</p>
+</section>
+<section id="filter-configuration">
+<h2>Filter Configuration<a class="headerlink" href="#filter-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Filter can be bypassed for each channel separately, although if they are not,
+the user can set a filter delay.
+All this can be done with the <strong>max22190_filter_set</strong> API, and also the user
+can read the filter configuration for each channel with <strong>max22190_filter_get</strong>.</p>
+</section>
+<section id="fault-enable-configuration">
+<h2>Fault Enable Configuration<a class="headerlink" href="#fault-enable-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Fault Enable bits can be configured with the help of the
+<strong>max22190_fault_enable_set</strong> API and read with <strong>max22190_fault_enable_get</strong>.
+If an enable bit is set, then the fault will be signaled in the fault register,
+otherwise it will not.</p>
+</section>
+<section id="max22190-driver-initialization-example">
+<h2>MAX22190 Driver Initialization Example<a class="headerlink" href="#max22190-driver-initialization-example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>struct max22190_desc *max22190_desc<span class="p">;</span>
+struct no_os_spi_init_param <span class="nv">max22190_spi_ip</span> <span class="o">=</span> <span class="o">{</span>
+        .device_id <span class="o">=</span> <span class="m">0</span>,
+        .extra <span class="o">=</span> <span class="p">&amp;</span>max22190_spi_extra,
+        .max_speed_hz <span class="o">=</span> <span class="m">100000</span>,
+        .platform_ops <span class="o">=</span> <span class="p">&amp;</span>max_spi_ops,
+        .chip_select <span class="o">=</span> <span class="m">1</span>,
+<span class="o">}</span><span class="p">;</span>
+struct max22190_init_param <span class="nv">max22190_ip</span> <span class="o">=</span> <span class="o">{</span>
+        .comm_param <span class="o">=</span> <span class="p">&amp;</span>max22190_spi_ip,
+        .crc_en <span class="o">=</span> false,
+<span class="o">}</span><span class="p">;</span>
+<span class="nv">ret</span> <span class="o">=</span> max22190_init<span class="o">(</span><span class="p">&amp;</span>max22190_desc, <span class="p">&amp;</span>max22190_ip<span class="o">)</span><span class="p">;</span>
+<span class="k">if</span> <span class="o">(</span>ret<span class="o">)</span>
+        goto error<span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="max22190-no-os-iio-support">
+<h2>MAX22190 no-OS IIO support<a class="headerlink" href="#max22190-no-os-iio-support" title="Permalink to this headline">¶</a></h2>
+<p>The MAX22190 IIO driver comes on top of the MAX22190 driver and offers support
+for interfacing IIO clients through libiio.</p>
+</section>
+<section id="max22190-iio-device-configuration">
+<h2>MAX22190 IIO Device Configuration<a class="headerlink" href="#max22190-iio-device-configuration" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="channel-attributes">
+<h2>Channel Attributes<a class="headerlink" href="#channel-attributes" title="Permalink to this headline">¶</a></h2>
+<p>MAX22190 has a total of 6 channel attributes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">raw</span> <span class="pre">-</span> <span class="pre">the</span> <span class="pre">state</span> <span class="pre">of</span> <span class="pre">a</span> <span class="pre">channel</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">offset</span> <span class="pre">-</span> <span class="pre">always</span> <span class="pre">0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scale</span> <span class="pre">-</span> <span class="pre">always</span> <span class="pre">1</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">filter_bypass</span> <span class="pre">-</span> <span class="pre">determines</span> <span class="pre">if</span> <span class="pre">the</span> <span class="pre">filter</span> <span class="pre">is</span> <span class="pre">used</span> <span class="pre">on</span> <span class="pre">the</span> <span class="pre">requested</span> <span class="pre">channel</span> <span class="pre">or</span> <span class="pre">not.</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">filter_delay</span> <span class="pre">-</span> <span class="pre">if</span> <span class="pre">the</span> <span class="pre">filter_bypass</span> <span class="pre">is</span> <span class="pre">set</span> <span class="pre">to</span> <span class="pre">1,</span> <span class="pre">the</span> <span class="pre">filter's</span> <span class="pre">delay</span> <span class="pre">can</span> <span class="pre">be</span> <span class="pre">set</span> <span class="pre">from</span> <span class="pre">here.</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">filter_delay_available</span> <span class="pre">-</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">possible</span> <span class="pre">filter</span> <span class="pre">delay's.</span></code></p></li>
+</ul>
+</section>
+<section id="debug-attributes">
+<h2>Debug Attributes<a class="headerlink" href="#debug-attributes" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">fault1</span> <span class="pre">-</span> <span class="pre">fault1</span> <span class="pre">register</span> <span class="pre">value</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fault2</span> <span class="pre">-</span> <span class="pre">fault2</span> <span class="pre">register</span> <span class="pre">value</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wbg_enable</span> <span class="pre">-</span> <span class="pre">Wire</span> <span class="pre">Break</span> <span class="pre">detection</span> <span class="pre">asserted</span> <span class="pre">to</span> <span class="pre">fault</span> <span class="pre">pin</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">24vm_enable</span> <span class="pre">-</span> <span class="pre">24V</span> <span class="pre">Supply</span> <span class="pre">Missing</span> <span class="pre">detection</span> <span class="pre">asserted</span> <span class="pre">to</span> <span class="pre">fault</span> <span class="pre">pin</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">24vl_enable</span> <span class="pre">-</span> <span class="pre">24V</span> <span class="pre">Supply</span> <span class="pre">Low</span> <span class="pre">detection</span> <span class="pre">asserted</span> <span class="pre">to</span> <span class="pre">fault</span> <span class="pre">pin</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">alrmt1_enable</span> <span class="pre">-</span> <span class="pre">Alarm</span> <span class="pre">1</span> <span class="pre">threshold</span> <span class="pre">detection</span> <span class="pre">asserted</span> <span class="pre">to</span> <span class="pre">fault</span> <span class="pre">pin</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">alrmt2_enable</span> <span class="pre">-</span> <span class="pre">Alarm</span> <span class="pre">2</span> <span class="pre">threshold</span> <span class="pre">detection</span> <span class="pre">asserted</span> <span class="pre">to</span> <span class="pre">fault</span> <span class="pre">pin</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fault2_enable</span> <span class="pre">-</span> <span class="pre">Any</span> <span class="pre">bit</span> <span class="pre">from</span> <span class="pre">fault2</span> <span class="pre">is</span> <span class="pre">asserted</span> <span class="pre">to</span> <span class="pre">fault</span> <span class="pre">pin</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rfwbs_enable</span> <span class="pre">-</span> <span class="pre">RFWB</span> <span class="pre">short</span> <span class="pre">detection</span> <span class="pre">is</span> <span class="pre">asserted</span> <span class="pre">to</span> <span class="pre">fault</span> <span class="pre">pin</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rfwbo_enable</span> <span class="pre">-</span> <span class="pre">RFWB</span> <span class="pre">open</span> <span class="pre">detection</span> <span class="pre">is</span> <span class="pre">asserted</span> <span class="pre">to</span> <span class="pre">fault</span> <span class="pre">pin</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rfdis_enable</span> <span class="pre">-</span> <span class="pre">RFDI</span> <span class="pre">short</span> <span class="pre">detection</span> <span class="pre">is</span> <span class="pre">asserted</span> <span class="pre">to</span> <span class="pre">fault</span> <span class="pre">pin</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rfdio_enable</span> <span class="pre">-</span> <span class="pre">RFDI</span> <span class="pre">open</span> <span class="pre">detection</span> <span class="pre">is</span> <span class="pre">asserted</span> <span class="pre">to</span> <span class="pre">fault</span> <span class="pre">pin</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">otshdn_enable</span> <span class="pre">-</span> <span class="pre">Overtemperature</span> <span class="pre">shutdown</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fault8ck_enable</span> <span class="pre">-</span> <span class="pre">SPI</span> <span class="pre">receives</span> <span class="pre">bad</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">clock</span> <span class="pre">pulses</span></code></p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="device-channels">
+<h2>Device Channels<a class="headerlink" href="#device-channels" title="Permalink to this headline">¶</a></h2>
+<p>MAX22190 has a specific API, <strong>max22190_iio_setup_channels</strong> for configuring the
+channels at the initialization, therefore the channels can be enabled or
+disabled at initialization only.</p>
+</section>
+<section id="max22190-iio-driver-initialization-example">
+<h2>MAX22190 IIO Driver Initialization Example<a class="headerlink" href="#max22190-iio-driver-initialization-example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>int ret<span class="p">;</span>
+
+struct max22190_iio_desc *max22190_iio_desc<span class="p">;</span>
+struct max22190_iio_desc_init_param <span class="nv">max22190_iio_ip</span> <span class="o">=</span> <span class="o">{</span>
+        .max22190_init_param <span class="o">=</span> <span class="p">&amp;</span>max22190_ip,
+        .ch_enabled <span class="o">=</span> <span class="o">{</span>
+                true, true, true, false, false, false, false, <span class="nb">false</span>
+        <span class="o">}</span>,
+<span class="o">}</span><span class="p">;</span>
+
+struct iio_app_desc *app<span class="p">;</span>
+struct iio_app_init_param <span class="nv">app_init_param</span> <span class="o">=</span> <span class="o">{</span> <span class="m">0</span> <span class="o">}</span><span class="p">;</span>
+
+<span class="nv">ret</span> <span class="o">=</span> max22190_iio_init<span class="o">(</span><span class="p">&amp;</span>max22190_iio_desc, <span class="p">&amp;</span>max22190_iio_ip<span class="o">)</span><span class="p">;</span>
+<span class="k">if</span> <span class="o">(</span>ret<span class="o">)</span>
+        goto error<span class="p">;</span>
+
+struct iio_app_device iio_devices<span class="o">[]</span> <span class="o">=</span> <span class="o">{</span>
+        <span class="o">{</span>
+                .name <span class="o">=</span> <span class="s2">&quot;max22190&quot;</span>,
+                .dev <span class="o">=</span> max22190_iio_desc,
+                .dev_descriptor <span class="o">=</span> max22190_iio_desc-&gt;iio_dev,
+        <span class="o">}</span>,
+<span class="o">}</span><span class="p">;</span>
+
+app_init_param.devices <span class="o">=</span> iio_devices<span class="p">;</span>
+app_init_param.nb_devices <span class="o">=</span> NO_OS_ARRAY_SIZE<span class="o">(</span>iio_devices<span class="o">)</span><span class="p">;</span>
+app_init_param.uart_init_params <span class="o">=</span> max22190_uart_ip<span class="p">;</span>
+
+<span class="nv">ret</span> <span class="o">=</span> iio_app_init<span class="o">(</span><span class="p">&amp;</span>app, app_init_param<span class="o">)</span><span class="p">;</span>
+<span class="k">if</span> <span class="o">(</span>ret<span class="o">)</span>
+        goto app_error<span class="p">;</span>
+
+<span class="k">return</span> iio_app_run<span class="o">(</span>app<span class="o">)</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/adi_logo.png" alt="Logo"/>
+            </a></p>
+<h1 class="logo"><a href="../index.html">no-OS</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../drivers_guide.html">no-OS drivers guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../drivers_doc.html">no-OS drivers list</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../drivers_doc.html#accelerometers">ACCELEROMETERS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../drivers_doc.html#analog-to-digital-converters">ANALOG TO DIGITAL CONVERTERS</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../drivers_doc.html#digital-input-output">DIGITAL INPUT/OUTPUT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../drivers_doc.html#inertial-measurement-units">INERTIAL MEASUREMENT UNITS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../drivers_doc.html#rf-transceiver">RF TRANSCEIVER</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../projects_doc.html">no-OS projects list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to no-OS</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../drivers_doc.html">no-OS drivers list</a><ul>
+      <li>Previous: <a href="max149x6.html" title="previous chapter">MAX149X6 no-OS driver</a></li>
+      <li>Next: <a href="max22196.html" title="next chapter">MAX22196 no-OS driver</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Analog Devices, Inc..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/drivers/max22190.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

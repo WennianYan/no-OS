@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Evaluating the AD-APARD32690-SL &#8212; no-OS  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Contributing to no-OS" href="../contributing.html" />
+    <link rel="prev" title="adrv902x no-OS Sample Poject" href="adrv902x.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="evaluating-the-ad-apard32690-sl">
+<h1>Evaluating the AD-APARD32690-SL<a class="headerlink" href="#evaluating-the-ad-apard32690-sl" title="Permalink to this headline">¶</a></h1>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>Prior to building the project, a couple steps are necessary in order to get the Maxim Micros SDK and setup the environment. These are presented in the <strong>*Build Prerequisites*</strong> section of no-OS build guide available here: <a class="reference external" href="https://wiki.analog.com/resources/no-os/build">https://wiki.analog.com/resources/no-os/build</a> .</p>
+<p>The MaximSDK provides distributions of <cite>arm-none-eabi-</cite> GCC compiler + utilities and <cite>OpenOCD</cite>, so you don’t have to install these separately.</p>
+</section>
+<section id="building-the-project">
+<h2>Building the project<a class="headerlink" href="#building-the-project" title="Permalink to this headline">¶</a></h2>
+<p>The project includes 2 different examples:</p>
+<p>1. basic_example - may be selected by setting the APARD32690_BASIC_EXAMPLE = y (and all the other examples to n) in the main Makefile.
+This example is meant to print “Hello world” over UART0. Make sure to have jumpers in the position 2-3 on headers P50 and P55.</p>
+<p>2. tcp_echo_server (selected by default) - may be selected by setting the APARD32690_ECHO_SERVER_EXAMPLE = y (and all the other examples to n) in the main Makefile.
+This will start a TCP server using the interface ADIN1110 is connected to (IP: 169.254.97.40 port: 10000). It will reply back to the connected client with the
+characters it receives.</p>
+<p>The host running the client may require network settings in order to communicate with a device using the 169.254.97.40 IP. These usually include adding a static route
+for the said IP address.</p>
+<p>The project may be tested by using netcat on the host:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>netcat <span class="m">169</span>.254.97.40 <span class="m">10000</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Open a terminal and navigate to this project directory (if building on Windows, <cite>Git Bash</cite> has to be used).</p></li>
+<li><p>Type <cite>make RELEASE=y -j</cite>, in order to build the project. The <cite>RELEASE</cite> flag adds <cite>-O2</cite> optimization. It should be omitted during debugging.</p></li>
+</ol>
+<p>A successful build should end with the following terminal output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="m">11</span>:11:27<span class="o">]</span> <span class="o">[</span>HEX<span class="o">]</span> apard32690.hex
+<span class="o">[</span><span class="m">11</span>:11:27<span class="o">]</span> apard32690.hex is ready
+rm /home/xvr/MaximSDK_new/Libraries/CMSIS/Device/Maxim/MAX32690/Source/GCC/startup_max32690.s
+<span class="o">[</span><span class="m">11</span>:11:21<span class="o">]</span> Done <span class="o">(</span>build/apard32690.elf<span class="o">)</span>
+</pre></div>
+</div>
+<p>The binary and executable files are now available in the <cite>build</cite> directory (<cite>apard32690.hex</cite> and <cite>apard32690.elf</cite> files).</p>
+</section>
+<section id="programming-the-mcu">
+<h2>Programming the MCU<a class="headerlink" href="#programming-the-mcu" title="Permalink to this headline">¶</a></h2>
+<p>Before the MCU can be programmed a few steps are necessary:</p>
+<ol class="arabic">
+<li><p>Replace the DAPLINK firmware for the MAX32625PICO. This is only required to be done one time.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Download the firmware image from the following link: <a class="reference external" href="https://github.com/MaximIntegrated/max32625pico-firmware-images/raw/master/bin/max32625_max32650fthr_if_crc_swd_v1.0.6.bin">https://github.com/MaximIntegrated/max32625pico-firmware-images/raw/master/bin/max32625_max32650fthr_if_crc_swd_v1.0.6.bin</a> .</p></li>
+<li><p>Make sure the MAX32625PICO is not connected to the PC.</p></li>
+<li><p>Press the button on the MAX32625PICO, and keep it pressed while you plug the USB cable in the MAX32625PICO.</p></li>
+<li><p>Release the button once you can see a <cite>MAINTENANCE</cite> drive being mounted.</p></li>
+<li><p>Copy the firmware binary file to the <cite>MAINTANANCE</cite> drive. It should unmount and a <cite>DAPLINK</cite> drive should appear instead.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Connect the MAX32625PICO board to the PC and the APARD32690 board. If everything went well, you should see a mass storage device named <cite>DAPLINK</cite> in your filesystem.</p></li>
+<li><p>Power on the APARD32690 board.</p></li>
+</ol>
+<p>The microcontroller may be programmed in 2 ways:
+1. Drag-and-drop the binary (.hex) file in the <cite>DAPLINK</cite> directory. The drive should be unmounted and mounted again, once the programming is done.
+2. While in the project’s root directory, type <cite>make RELEASE=y run</cite>. This method uses OpenOCD in order to load the binary file. If the programming is successful, you should see the following terminal output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>** Programming Started **
+** Programming Finished **
+** Verify Started **
+** Verified OK **
+** Resetting Target **
+shutdown <span class="nb">command</span> invoked
+<span class="o">[</span><span class="m">11</span>:27:42<span class="o">]</span> apard32690.elf uploaded to board
+</pre></div>
+</div>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/adi_logo.png" alt="Logo"/>
+            </a></p>
+<h1 class="logo"><a href="../index.html">no-OS</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../drivers_guide.html">no-OS drivers guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drivers_doc.html">no-OS drivers list</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../projects_doc.html">no-OS projects list</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../projects_doc.html#inertial-measurement-units">INERTIAL MEASUREMENT UNITS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../projects_doc.html#meter">METER</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../projects_doc.html#rf-transceiver">RF TRANSCEIVER</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../projects_doc.html#eval-boards">EVAL BOARDS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to no-OS</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../projects_doc.html">no-OS projects list</a><ul>
+      <li>Previous: <a href="adrv902x.html" title="previous chapter">adrv902x no-OS Sample Poject</a></li>
+      <li>Next: <a href="../contributing.html" title="next chapter">Contributing to no-OS</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Analog Devices, Inc..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/projects/apard32690.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

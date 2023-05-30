@@ -1,0 +1,6 @@
+<map id="drivers/platform/maxim/max78000/maxim_gpio_irq.h" name="drivers/platform/maxim/max78000/maxim_gpio_irq.h">
+<area shape="rect" id="node1" title="Header file of GPIO IRQ interface for Maxim platform." alt="" coords="126,5,342,47"/>
+<area shape="rect" id="node2" href="$max78000_2maxim__gpio__irq_8c.html" title="Source file for GPIO IRQ driver." alt="" coords="5,95,220,136"/>
+<area shape="rect" id="node3" href="$max14906_2src_2platform_2maxim_2parameters_8h.html" title="Definition of Maxim platform data used by max14906 project." alt="" coords="244,95,467,136"/>
+<area shape="rect" id="node4" href="$max14906_2src_2platform_2maxim_2parameters_8c.html" title="Definition of Maxim platform data used by max14906 project." alt="" coords="244,184,467,225"/>
+</map>

@@ -1,0 +1,423 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>MAX22200 no-OS driver &#8212; no-OS  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ADIS no-OS driver" href="imu.html" />
+    <link rel="prev" title="MAX22196 no-OS driver" href="max22196.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="max22200-no-os-driver">
+<h1>MAX22200 no-OS driver<a class="headerlink" href="#max22200-no-os-driver" title="Permalink to this headline">¶</a></h1>
+<section id="supported-devices">
+<h2>Supported Devices<a class="headerlink" href="#supported-devices" title="Permalink to this headline">¶</a></h2>
+<p><cite>MAX22200 &lt;https://www.analog.com/MAX22200&gt;</cite></p>
+</section>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The MAX22200 is an octal 36V serial-controlled solenoid driver.
+Each channel features a low impedance (200mΩ typ) push-pull output stage with
+sink-and-source driving capability and up to 1ARMS driving current.
+A serial interface (SPI) that also supports daisy-chain configurations is
+provided to individually control each channel.</p>
+</section>
+<section id="applications">
+<h2>Applications<a class="headerlink" href="#applications" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Relays Driver</p></li>
+<li><p>Solenoid, Valves, Electromagnetic Drivers</p></li>
+<li><p>Generic Low-Side and High-Side Switch Applications</p></li>
+<li><p>Latched (Bi-Stable) Solenoid Valve Drivers</p></li>
+<li><p>Brushed DC Motor Driver</p></li>
+</ul>
+</section>
+<section id="max22200-device-configuration">
+<h2>MAX22200 Device Configuration<a class="headerlink" href="#max22200-device-configuration" title="Permalink to this headline">¶</a></h2>
+<p>In order to use the MAX22200, you will have to provide support for the
+communication protocol (SPI), but also a GPIO for the CMD pin since before every
+SPI transaction  there needs to be a SPI write to the Command Register while
+CMD pin is logic high, and then performing the actual SPI transaction with CMD
+pin logic low.
+Also the ENABLE pin needs to be logic high for the device to be able to be
+initialized.</p>
+<p>The first API to be called is <strong>max22200_init</strong>. Make sure that it returns 0,
+which means that the driver was initialized correctly.</p>
+<p>Chopping frequency can also be changed with <strong>max22200_set_chop_freq</strong>.</p>
+</section>
+<section id="external-trigger-configuration">
+<h2>External trigger configuration<a class="headerlink" href="#external-trigger-configuration" title="Permalink to this headline">¶</a></h2>
+<p>An external trigger can be assigned to the TRIG pin, but in order for that to
+work a GPIO initalization parameter for the trig pin needs to be set so the GPIO
+is initialized and controlled by the master.
+This can be used in both Half and Full Bridge modes for applications like
+DC motor drivers.</p>
+<p>The state of the trigger can be change with the help of
+<strong>max22200_set_trig_state</strong> API.</p>
+</section>
+<section id="channel-configuration">
+<h2>Channel configuration<a class="headerlink" href="#channel-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Each channel can be configured in a lot of ways, but the first one of all is
+the <strong>max22200_set_ch_state</strong> which is to be called by the user after the
+initialization is performed correctly in order to activate a specific channel.</p>
+<p>After that the channel’s configuration can be changed on-the-fly.</p>
+<p>HIT time and current can be changed with <strong>max22200_set_ch_hit</strong>.
+HOLD current can be changed with <strong>max222000_set_ch_hold</strong>.</p>
+<p>Scale can be set for a channel with <strong>max22200_set_ch_scale</strong> which for
+half the fullscale will double the resistor and the current will be reduced
+to half.</p>
+<p>Channel trigger can be changed to be either controlled by the SPI interface
+or the external trigger with <strong>max22200_set_ch_trig</strong>.</p>
+<p>Channel mode and frequency can also be set with the help of
+<strong>max22200_set_ch_mode</strong> and <strong>max22200_set_ch_freq</strong>.</p>
+<p>And at last for every channel there are some specific enables that the user
+can enable/disable with the help of <strong>max22200_set_ch_enable</strong>.</p>
+<p>For every API to set a channel configuration in the CFG CH register there is
+also a API to get a channel configuration form the CFG CH register.</p>
+</section>
+<section id="fault-mask-configuration">
+<h2>Fault mask configuration<a class="headerlink" href="#fault-mask-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Fault masks can be set for the whole device in the STATUS register with the
+help of <strong>max22200_fault_mask_set</strong>, and read with <strong>max22200_fault_mask_get</strong>.</p>
+</section>
+<section id="dpm-configuration">
+<h2>DPM configuration<a class="headerlink" href="#dpm-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Detection of plunger movement can be configured as well with the help of the
+<strong>max22200_set_cfg_dpm</strong> where the user can set specific values for the DPM.
+The same specific values can be read with the help of <strong>max22200_get_cfg_dpm</strong>.</p>
+</section>
+<section id="max22200-driver-initialization-example">
+<h2>MAX22200 Driver Initialization Example<a class="headerlink" href="#max22200-driver-initialization-example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>struct max22200_desc *max22200<span class="p">;</span>
+struct no_os_spi_init_param <span class="nv">spi_ip</span> <span class="o">=</span> <span class="o">{</span>
+        .device_id <span class="o">=</span> <span class="m">0</span>,
+        .extra <span class="o">=</span> <span class="p">&amp;</span>max22200_spi_extra,
+        .max_speed_hz <span class="o">=</span> <span class="m">100000</span>,
+        .platform_ops <span class="o">=</span> <span class="p">&amp;</span>max_spi_ops,
+        .chip_select <span class="o">=</span> <span class="m">0</span>,
+<span class="o">}</span><span class="p">;</span>
+struct no_os_gpio_init_param <span class="nv">cmd_ip</span> <span class="o">=</span> <span class="o">{</span>
+        .port <span class="o">=</span> <span class="m">0</span>,
+        .pull <span class="o">=</span> NO_OS_PULL_NONE,
+        .number <span class="o">=</span> <span class="m">5</span>,
+        .platform_ops <span class="o">=</span> <span class="p">&amp;</span>max_gpio_ops,
+        .extra <span class="o">=</span> <span class="p">&amp;</span>max22200_gpio_extra,
+<span class="o">}</span><span class="p">;</span>
+struct max22200_init_param <span class="nv">max22200_ip</span> <span class="o">=</span> <span class="o">{</span>
+        .comm_desc <span class="o">=</span> <span class="p">&amp;</span>spi_ip,
+        .cmd_param <span class="o">=</span> <span class="p">&amp;</span>cmd_ip,
+        .ch_config <span class="o">=</span> <span class="o">{</span>
+        MAX22200_INDEPENDENT_MODE,
+        MAX22200_INDEPENDENT_MODE,
+        MAX22200_INDEPENDENT_MODE,
+        MAX22200_INDEPENDENT_MODE,
+        <span class="o">}</span>
+<span class="o">}</span><span class="p">;</span>
+
+<span class="nv">ret</span> <span class="o">=</span> max22200_init<span class="o">(</span><span class="p">&amp;</span>max22200, <span class="p">&amp;</span>max22200_ip<span class="o">)</span><span class="p">;</span>
+<span class="k">if</span> <span class="o">(</span>ret<span class="o">)</span>
+        goto error<span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="basic-example-channel-configuration-table">
+<h2>Basic Example Channel Configuration Table<a class="headerlink" href="#basic-example-channel-configuration-table" title="Permalink to this headline">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 22%" />
+<col style="width: 9%" />
+<col style="width: 8%" />
+<col style="width: 15%" />
+<col style="width: 9%" />
+<col style="width: 12%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Channel</p></td>
+<td><p>State</p></td>
+<td><p>Operation Mode</p></td>
+<td><p>Drive</p></td>
+<td><p>Side</p></td>
+<td><p>Frequency</p></td>
+<td><p>Scale</p></td>
+<td><p>Trigger</p></td>
+</tr>
+<tr class="row-even"><td><p>OUT0</p></td>
+<td><p>Enabled</p></td>
+<td><p>HALF-BRIDGE</p></td>
+<td><p>CDR</p></td>
+<td><p>LS</p></td>
+<td><p>40KHz</p></td>
+<td><p>FS</p></td>
+<td><p>SPI</p></td>
+</tr>
+<tr class="row-odd"><td><p>OUT1</p></td>
+<td><p>Enabled</p></td>
+<td><p>HALF-BRIDGE</p></td>
+<td><p>CDR</p></td>
+<td><p>LS</p></td>
+<td><p>40KHz</p></td>
+<td><p>FS</p></td>
+<td><p>SPI</p></td>
+</tr>
+<tr class="row-even"><td><p>OUT2</p></td>
+<td><p>Disabled</p></td>
+<td><p>INDEPENDENT</p></td>
+<td><p>CDR</p></td>
+<td><p>LS</p></td>
+<td><p>80KHz</p></td>
+<td><p>FS</p></td>
+<td><p>SPI</p></td>
+</tr>
+<tr class="row-odd"><td><p>OUT3</p></td>
+<td><p>Disabled</p></td>
+<td><p>INDEPENDENT</p></td>
+<td><p>CDR</p></td>
+<td><p>LS</p></td>
+<td><p>80KHZ</p></td>
+<td><p>FS</p></td>
+<td><p>SPI</p></td>
+</tr>
+<tr class="row-even"><td><p>OUT4</p></td>
+<td><p>Disabled</p></td>
+<td><p>INDEPENDENT</p></td>
+<td><p>CDR</p></td>
+<td><p>LS</p></td>
+<td><p>80KHZ</p></td>
+<td><p>FS</p></td>
+<td><p>SPI</p></td>
+</tr>
+<tr class="row-odd"><td><p>OUT5</p></td>
+<td><p>Disabled</p></td>
+<td><p>INDEPENDENT</p></td>
+<td><p>CDR</p></td>
+<td><p>LS</p></td>
+<td><p>80KHZ</p></td>
+<td><p>FS</p></td>
+<td><p>SPI</p></td>
+</tr>
+<tr class="row-even"><td><p>OUT6</p></td>
+<td><p>Disabled</p></td>
+<td><p>INDEPENDENT</p></td>
+<td><p>CDR</p></td>
+<td><p>LS</p></td>
+<td><p>80KHZ</p></td>
+<td><p>FS</p></td>
+<td><p>SPI</p></td>
+</tr>
+<tr class="row-odd"><td><p>OUT7</p></td>
+<td><p>Disabled</p></td>
+<td><p>INDEPENDENT</p></td>
+<td><p>CDR</p></td>
+<td><p>LS</p></td>
+<td><p>80KHZ</p></td>
+<td><p>FS</p></td>
+<td><p>SPI</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="max22200-no-os-iio-support">
+<h2>MAX22200 no-OS IIO support<a class="headerlink" href="#max22200-no-os-iio-support" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="channel-attributes">
+<h2>Channel Attributes<a class="headerlink" href="#channel-attributes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>raw - state of the channel.</p></li>
+<li><p>scale - scale of the channel.</p></li>
+<li><p>scale_available - available scales for the channel.</p></li>
+<li><p>hit_current - HIT current to be set in the CFG_CH register.</p></li>
+<li><p>hit_time - HIT time to be set in the CFG_CH register.</p></li>
+<li><p>hold_current - HOLD current to be set in the CFG_CH register.</p></li>
+<li><p>channel_trig - ONCH_SPI/EXT_TRIG trigger selection for the channel.</p></li>
+<li><p>channel_trig_available - available trigger for the channel.</p></li>
+<li><p>channel_drive - Channel’s voltage or current drive.</p></li>
+<li><p>channel_drive_available - Channel available drives.</p></li>
+<li><p>channel_side - LOW/HIGH SIDE selection for the channel.</p></li>
+<li><p>channel_side_available - Available sides for the channel.</p></li>
+<li><p>channel_op_mode - Channel operation mode selection.</p></li>
+<li><p>channel_op_mode_available - Channel operation modes available for the channel.</p></li>
+<li><p>channel_freq - Channel frequency to be selected. Calculated using the device frequency.</p></li>
+<li><p>channel_freq_available - Channel frequencies available for the channel.</p></li>
+<li><p>slew_rate_control - Slew Rate Control enable/disable.</p></li>
+<li><p>open_load_detection - Open Load Detection enable/disable.</p></li>
+<li><p>dpm_enable - Detection of Plunger Movement enable/disable.</p></li>
+<li><p>hit_current_check - HIT current check enable/disable.</p></li>
+</ul>
+</section>
+<section id="global-attributes">
+<h2>Global Attributes<a class="headerlink" href="#global-attributes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>chopping_frequency - Chopping frequency selection.</p></li>
+<li><p>chopping_frequency_available  Chopping frequencies available for the device.</p></li>
+<li><p>external_trig_state - External trigger’s state (enabled = 1/disabled = 0).</p></li>
+</ul>
+</section>
+<section id="debug-attributes">
+<h2>Debug Attributes<a class="headerlink" href="#debug-attributes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>thermal_protection_mask - Mask for the thermal protection of the device.</p></li>
+<li><p>overcurrent_protection_mask - Mask for the overcurrent protection of the device.</p></li>
+<li><p>open_load_mask - Mask for the open load detection of the device.</p></li>
+<li><p>hit_current_fault_mask - Mask for the hit current fault of the device.</p></li>
+<li><p>dpm_fault_mask - Mask for the detection of plunger movement fault of the device.</p></li>
+<li><p>com_err_mask - Mask for the communication error detection of the device.</p></li>
+<li><p>uvlo_mask - Mask for the Undervoltage Low detection of the device.</p></li>
+</ul>
+</section>
+<section id="device-channels">
+<h2>Device Channels<a class="headerlink" href="#device-channels" title="Permalink to this headline">¶</a></h2>
+<p>MAX22200 has a specific API, <strong>max22200_iio_setup_channels</strong> for configuring the
+channels at the initialization, therefore the channels can be configured as
+enabled/disabled and attributes are assigned to each channel (if enabled).</p>
+</section>
+<section id="max22200-iio-driver-initialization-example">
+<h2>MAX22200 IIO Driver Initialization Example<a class="headerlink" href="#max22200-iio-driver-initialization-example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>struct max22200_iio_desc *max22200_iio_desc<span class="p">;</span>
+struct max22200_iio_desc_init_param <span class="nv">max22200_iio_ip</span> <span class="o">=</span> <span class="o">{</span>
+        .max22200_init_param <span class="o">=</span> <span class="p">&amp;</span>max22200_ip,
+        .ch_enable <span class="o">=</span> <span class="o">{</span>
+                true, false, false, false, false, false, false, <span class="nb">false</span>
+        <span class="o">}</span>,
+<span class="o">}</span><span class="p">;</span>
+
+struct iio_app_desc *app<span class="p">;</span>
+struct iio_app_init_param <span class="nv">app_init_param</span> <span class="o">=</span> <span class="o">{</span> <span class="m">0</span> <span class="o">}</span><span class="p">;</span>
+
+<span class="nv">ret</span> <span class="o">=</span> max22200_iio_init<span class="o">(</span><span class="p">&amp;</span>max22200_iio_desc, <span class="p">&amp;</span>max22200_iio_ip<span class="o">)</span><span class="p">;</span>
+<span class="k">if</span> <span class="o">(</span>ret<span class="o">)</span>
+        goto exit<span class="p">;</span>
+
+struct iio_app_device iio_devices<span class="o">[]</span> <span class="o">=</span> <span class="o">{</span>
+        <span class="o">{</span>
+                .name <span class="o">=</span> <span class="s2">&quot;max22200&quot;</span>,
+                .dev <span class="o">=</span> max22200_iio_desc,
+                .dev_descriptor <span class="o">=</span> max22200_iio_desc-&gt;iio_dev,
+                .read_buff <span class="o">=</span> NULL,
+        <span class="o">}</span>,
+<span class="o">}</span><span class="p">;</span>
+
+app_init_param.devices <span class="o">=</span> iio_devices<span class="p">;</span>
+app_init_param.nb_devices <span class="o">=</span> NO_OS_ARRAY_SIZE<span class="o">(</span>iio_devices<span class="o">)</span><span class="p">;</span>
+app_init_param.uart_init_params <span class="o">=</span> max22200_uart_ip<span class="p">;</span>
+
+<span class="nv">ret</span> <span class="o">=</span> iio_app_init<span class="o">(</span><span class="p">&amp;</span>app, app_init_param<span class="o">)</span><span class="p">;</span>
+<span class="k">if</span> <span class="o">(</span>ret<span class="o">)</span>
+        goto remove_iio_max22200<span class="p">;</span>
+
+<span class="nv">ret</span> <span class="o">=</span> iio_app_run<span class="o">(</span>app<span class="o">)</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/adi_logo.png" alt="Logo"/>
+            </a></p>
+<h1 class="logo"><a href="../index.html">no-OS</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../drivers_guide.html">no-OS drivers guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../drivers_doc.html">no-OS drivers list</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../drivers_doc.html#accelerometers">ACCELEROMETERS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../drivers_doc.html#analog-to-digital-converters">ANALOG TO DIGITAL CONVERTERS</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../drivers_doc.html#digital-input-output">DIGITAL INPUT/OUTPUT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../drivers_doc.html#inertial-measurement-units">INERTIAL MEASUREMENT UNITS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../drivers_doc.html#rf-transceiver">RF TRANSCEIVER</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../projects_doc.html">no-OS projects list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to no-OS</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../drivers_doc.html">no-OS drivers list</a><ul>
+      <li>Previous: <a href="max22196.html" title="previous chapter">MAX22196 no-OS driver</a></li>
+      <li>Next: <a href="imu.html" title="next chapter">ADIS no-OS driver</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Analog Devices, Inc..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/drivers/max22200.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
