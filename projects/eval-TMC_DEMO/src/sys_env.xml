@@ -1,0 +1,1180 @@
+<?xml version='1.0' encoding= 'utf-8'?>
+<lattice:systemEnv xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014" xmlns:lattice="http://www.latticesemi.com/lattice">
+   <lattice:sysid>0</lattice:sysid>
+   <lattice:system>
+      <lattice:general>
+         <lattice:version>2022.1</lattice:version>
+         <lattice:vendor>lattice</lattice:vendor>
+         <lattice:name>template_ctpnxe</lattice:name>
+         <lattice:library>Propel</lattice:library>
+         <lattice:deviceFamily>LFCPNX</lattice:deviceFamily>
+         <lattice:bspLocation>bsp</lattice:bspLocation>
+         <lattice:yamlLocation>cpu0.yaml</lattice:yamlLocation>
+         <lattice:svdLocation>soc_svd/template_ctpnxe.svd</lattice:svdLocation>
+         <lattice:projectType>C</lattice:projectType>
+         <lattice:templateName>*</lattice:templateName>
+      </lattice:general>
+      <lattice:ipInstances>
+         <lattice:ipInstance>
+            <lattice:instanceName library="ip" name="riscv_mc" vendor="latticesemi.com" version="2.4.0">cpu0_inst</lattice:instanceName>
+            <ipxact:addressSpaces>
+               <ipxact:addressSpace>
+                  <ipxact:name>riscv_ahbl_m_data_Address_Space</ipxact:name>
+                  <ipxact:range>4294967296</ipxact:range>
+                  <ipxact:width>32</ipxact:width>
+                  <ipxact:segments>
+                     <ipxact:segment>
+                        <ipxact:name>template_ctpnxe_gpio0_inst_gpio_mem_map</ipxact:name>
+                        <ipxact:displayName>template_ctpnxe/gpio0_inst/gpio_mem_map</ipxact:displayName>
+                        <ipxact:addressOffset>0x8400</ipxact:addressOffset>
+                        <ipxact:range>0x400</ipxact:range>
+                     </ipxact:segment>
+                     <ipxact:segment>
+                        <ipxact:name>template_ctpnxe_i2c0_inst_i2c_master_mem_map</ipxact:name>
+                        <ipxact:displayName>template_ctpnxe/i2c0_inst/i2c_master_mem_map</ipxact:displayName>
+                        <ipxact:addressOffset>0x8800</ipxact:addressOffset>
+                        <ipxact:range>0x400</ipxact:range>
+                     </ipxact:segment>
+                     <ipxact:segment>
+                        <ipxact:name>template_ctpnxe_spi0_inst_spi_master_mem_map</ipxact:name>
+                        <ipxact:displayName>template_ctpnxe/spi0_inst/spi_master_mem_map</ipxact:displayName>
+                        <ipxact:addressOffset>0x8c00</ipxact:addressOffset>
+                        <ipxact:range>0x400</ipxact:range>
+                     </ipxact:segment>
+                     <ipxact:segment>
+                        <ipxact:name>template_ctpnxe_sysmem0_inst_ahbl_slv1_model_mem_map</ipxact:name>
+                        <ipxact:displayName>template_ctpnxe/sysmem0_inst/ahbl_slv1_model_mem_map</ipxact:displayName>
+                        <ipxact:addressOffset>0x0</ipxact:addressOffset>
+                        <ipxact:range>0x8000</ipxact:range>
+                     </ipxact:segment>
+                     <ipxact:segment>
+                        <ipxact:name>template_ctpnxe_uart0_inst_uart_mem_map</ipxact:name>
+                        <ipxact:displayName>template_ctpnxe/uart0_inst/uart_mem_map</ipxact:displayName>
+                        <ipxact:addressOffset>0x8000</ipxact:addressOffset>
+                        <ipxact:range>0x400</ipxact:range>
+                     </ipxact:segment>
+                  </ipxact:segments>
+                  <ipxact:localMemoryMap>
+                     <ipxact:name>pic_timer_mem_map</ipxact:name>
+                     <ipxact:description>AHB-Lite PIC and Timer memory map</ipxact:description>
+                     <ipxact:addressBlock>
+                        <ipxact:name>pic_timer_registers</ipxact:name>
+                        <ipxact:displayName>PIC_Timer_Registers</ipxact:displayName>
+                        <ipxact:description>PIC Timer Registers</ipxact:description>
+                        <ipxact:baseAddress>0xffff0000</ipxact:baseAddress>
+                        <ipxact:range>0x800</ipxact:range>
+                        <ipxact:width>32</ipxact:width>
+                     </ipxact:addressBlock>
+                  </ipxact:localMemoryMap>
+               </ipxact:addressSpace>
+               <ipxact:addressSpace>
+                  <ipxact:name>riscv_ahbl_m_instr_Address_Space</ipxact:name>
+                  <ipxact:range>4294967296</ipxact:range>
+                  <ipxact:width>32</ipxact:width>
+                  <ipxact:segments>
+                     <ipxact:segment>
+                        <ipxact:name>template_ctpnxe_sysmem0_inst_ahbl_slv0_model_mem_map</ipxact:name>
+                        <ipxact:displayName>template_ctpnxe/sysmem0_inst/ahbl_slv0_model_mem_map</ipxact:displayName>
+                        <ipxact:addressOffset>0x0</ipxact:addressOffset>
+                        <ipxact:range>0x8000</ipxact:range>
+                     </ipxact:segment>
+                  </ipxact:segments>
+               </ipxact:addressSpace>
+            </ipxact:addressSpaces>
+            <lattice:configurableParameters>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">SIMULATION</lattice:name>
+                  <lattice:value>False</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">DEBUG_ENABLE</lattice:name>
+                  <lattice:value>True</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">SOFT_JTAG</lattice:name>
+                  <lattice:value>False</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">HW_WATCHPOINT</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">CACHE_ENABLE</lattice:name>
+                  <lattice:value>False</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">CACHE_ENV</lattice:name>
+                  <lattice:value>True</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">ICACHE_ENABLE</lattice:name>
+                  <lattice:value>False</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">DCACHE_ENABLE</lattice:name>
+                  <lattice:value>False</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">ICACHE_RANGE_LOW</lattice:name>
+                  <lattice:value>0xFFFFFFFF</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">ICACHE_RANGE_HIGH</lattice:name>
+                  <lattice:value>0x00000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">DCACHE_RANGE_LOW</lattice:name>
+                  <lattice:value>0xFFFFFFFF</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">DCACHE_RANGE_HIGH</lattice:name>
+                  <lattice:value>0x00000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">C_STANDALONE</lattice:name>
+                  <lattice:value>True</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">M_STANDALONE</lattice:name>
+                  <lattice:value>True</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">C_EXT</lattice:name>
+                  <lattice:value>True</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">M_EXT</lattice:name>
+                  <lattice:value>True</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">PIC_ENABLE</lattice:name>
+                  <lattice:value>True</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">TIMER_ENABLE</lattice:name>
+                  <lattice:value>True</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">PICTIMER_START_ADDR</lattice:name>
+                  <lattice:value>0xFFFF0000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">IRQ_NUM</lattice:name>
+                  <lattice:value>4</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">DEVICE</lattice:name>
+                  <lattice:value>LFCPNX</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">JTAG_CHANNEL</lattice:name>
+                  <lattice:value>14</lattice:value>
+               </lattice:configurableParameter>
+            </lattice:configurableParameters>
+         </lattice:ipInstance>
+         <lattice:ipInstance>
+            <lattice:instanceName library="ip" name="gpio" vendor="latticesemi.com" version="1.6.1">gpio0_inst</lattice:instanceName>
+            <ipxact:memoryMaps>
+               <ipxact:memoryMap>
+                  <ipxact:name>gpio_mem_map</ipxact:name>
+                  <ipxact:description>GPIO memory map</ipxact:description>
+                  <ipxact:addressBlock>
+                     <ipxact:name>GPIO_Registers</ipxact:name>
+                     <ipxact:baseAddress>0x8400</ipxact:baseAddress>
+                     <ipxact:range>0x400</ipxact:range>
+                     <ipxact:width>32</ipxact:width>
+                  </ipxact:addressBlock>
+               </ipxact:memoryMap>
+            </ipxact:memoryMaps>
+            <lattice:configurableParameters>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="1">LINES_NUM</lattice:name>
+                  <lattice:value>32</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="2">GPIO_DIRS</lattice:name>
+                  <lattice:value>0x000000FF</lattice:value>
+               </lattice:configurableParameter>
+            </lattice:configurableParameters>
+            <lattice:structName>gpio_instance</lattice:structName>
+            <lattice:initName>gpio_init</lattice:initName>
+            <lattice:headerFile>gpio.h</lattice:headerFile>
+            <lattice:interruptPort>IRQ_S1</lattice:interruptPort>
+         </lattice:ipInstance>
+         <lattice:ipInstance>
+            <lattice:instanceName library="ip" name="i2c_master" vendor="latticesemi.com" version="1.5.0">i2c0_inst</lattice:instanceName>
+            <ipxact:memoryMaps>
+               <ipxact:memoryMap>
+                  <ipxact:name>i2c_master_mem_map</ipxact:name>
+                  <ipxact:description>I2C_Master memory map</ipxact:description>
+                  <ipxact:addressBlock>
+                     <ipxact:name>I2C_Master_Registers</ipxact:name>
+                     <ipxact:baseAddress>0x8800</ipxact:baseAddress>
+                     <ipxact:range>0x400</ipxact:range>
+                     <ipxact:width>32</ipxact:width>
+                  </ipxact:addressBlock>
+               </ipxact:memoryMap>
+            </ipxact:memoryMaps>
+            <lattice:configurableParameters>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">APB_ENABLE</lattice:name>
+                  <lattice:value>True</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">FAMILY</lattice:name>
+                  <lattice:value>LFCPNX</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">FIFO_WIDTH</lattice:name>
+                  <lattice:value>8</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">FIFO_DEPTH</lattice:name>
+                  <lattice:value>16</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">FIFO_IMPL</lattice:name>
+                  <lattice:value>LUT</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">TX_FIFO_AE_FLAG</lattice:name>
+                  <lattice:value>2</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">RX_FIFO_AF_FLAG</lattice:name>
+                  <lattice:value>14</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">SYS_CLOCK_FREQ</lattice:name>
+                  <lattice:value>18</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">DESIRED_CLOCK_FREQ</lattice:name>
+                  <lattice:value>100.0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">PRESCALER_INPUT</lattice:name>
+                  <lattice:value>87</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">PRESCALER</lattice:name>
+                  <lattice:value>87</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">ACTUAL_CLOCK_FREQ</lattice:name>
+                  <lattice:value>100.55865921787709</lattice:value>
+               </lattice:configurableParameter>
+            </lattice:configurableParameters>
+            <lattice:interruptPort>IRQ_S3</lattice:interruptPort>
+         </lattice:ipInstance>
+         <lattice:ipInstance>
+            <lattice:instanceName library="ip" name="spi_master" vendor="latticesemi.com" version="1.4.1">spi0_inst</lattice:instanceName>
+            <ipxact:memoryMaps>
+               <ipxact:memoryMap>
+                  <ipxact:name>spi_master_mem_map</ipxact:name>
+                  <ipxact:description>SPI_Master memory map</ipxact:description>
+                  <ipxact:addressBlock>
+                     <ipxact:name>SPI_MASTER_Registers</ipxact:name>
+                     <ipxact:baseAddress>0x8c00</ipxact:baseAddress>
+                     <ipxact:range>0x400</ipxact:range>
+                     <ipxact:width>32</ipxact:width>
+                  </ipxact:addressBlock>
+               </ipxact:memoryMap>
+            </ipxact:memoryMaps>
+            <lattice:configurableParameters>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INTERFACE</lattice:name>
+                  <lattice:value>AHBL</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">SLAVE_COUNT</lattice:name>
+                  <lattice:value>1</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">FAMILY</lattice:name>
+                  <lattice:value>LFCPNX</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">LSB_FIRST</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">ONLY_WRITE</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">DATA_WIDTH</lattice:name>
+                  <lattice:value>32</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">DATA_WIDTH_RESET</lattice:name>
+                  <lattice:value>3</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">SSNP</lattice:name>
+                  <lattice:value>1</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">CPOL</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">CPHA</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">slv_sel_pol</lattice:name>
+                  <lattice:value>00</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">SSPOL</lattice:name>
+                  <lattice:value>0x00000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">SPI_EN</lattice:name>
+                  <lattice:value>False</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">FIFO_WIDTH</lattice:name>
+                  <lattice:value>32</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">FIFO_DEPTH</lattice:name>
+                  <lattice:value>16</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">FIFO_IMPL</lattice:name>
+                  <lattice:value>EBR</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">TX_FIFO_AE_FLAG</lattice:name>
+                  <lattice:value>3</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">RX_FIFO_AF_FLAG</lattice:name>
+                  <lattice:value>12</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">SYS_CLOCK_FREQ</lattice:name>
+                  <lattice:value>108.0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">DESIRED_CLOCK_FREQ</lattice:name>
+                  <lattice:value>0.1</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">PRESCALER_INPUT</lattice:name>
+                  <lattice:value>540</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">PRESCALER</lattice:name>
+                  <lattice:value>540</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">ACTUAL_CLOCK_FREQ</lattice:name>
+                  <lattice:value>0.1</lattice:value>
+               </lattice:configurableParameter>
+            </lattice:configurableParameters>
+            <lattice:interruptPort>IRQ_S2</lattice:interruptPort>
+         </lattice:ipInstance>
+         <lattice:ipInstance>
+            <lattice:instanceName library="ip" name="system_memory" vendor="latticesemi.com" version="1.1.2">sysmem0_inst</lattice:instanceName>
+            <ipxact:memoryMaps>
+               <ipxact:memoryMap>
+                  <ipxact:name>ahbl_slv0_model_mem_map</ipxact:name>
+                  <ipxact:description>AHB-Lite Slave Model memory map</ipxact:description>
+                  <ipxact:addressBlock>
+                     <ipxact:name>memory</ipxact:name>
+                     <ipxact:displayName>memory</ipxact:displayName>
+                     <ipxact:description>Memory Block</ipxact:description>
+                     <ipxact:baseAddress>0x0</ipxact:baseAddress>
+                     <ipxact:range>0x8000</ipxact:range>
+                     <ipxact:width>32</ipxact:width>
+                     <ipxact:usage>memory</ipxact:usage>
+                  </ipxact:addressBlock>
+               </ipxact:memoryMap>
+               <ipxact:memoryMap>
+                  <ipxact:name>ahbl_slv1_model_mem_map</ipxact:name>
+                  <ipxact:description>AHB-Lite Slave Model memory map</ipxact:description>
+                  <ipxact:addressBlock>
+                     <ipxact:name>memory</ipxact:name>
+                     <ipxact:displayName>memory</ipxact:displayName>
+                     <ipxact:description>Memory Block</ipxact:description>
+                     <ipxact:baseAddress>0x0</ipxact:baseAddress>
+                     <ipxact:range>0x8000</ipxact:range>
+                     <ipxact:width>32</ipxact:width>
+                     <ipxact:usage>memory</ipxact:usage>
+                  </ipxact:addressBlock>
+               </ipxact:memoryMap>
+            </ipxact:memoryMaps>
+            <lattice:configurableParameters>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">FAMILY</lattice:name>
+                  <lattice:value>LFCPNX</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">TT_FAMILY</lattice:name>
+                  <lattice:value>LIFCL</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">use_ecp5</lattice:name>
+                  <lattice:value>False</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">ecp5_family</lattice:name>
+                  <lattice:value>ECP5U</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">ADDR_DEPTH</lattice:name>
+                  <lattice:value>8192</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">MEM_ID</lattice:name>
+                  <lattice:value>sysmem0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">MEM_SIZE</lattice:name>
+                  <lattice:value>32,8192</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">ADDR_WIDTH</lattice:name>
+                  <lattice:value>13</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">DATA_WIDTH</lattice:name>
+                  <lattice:value>32</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">MEMORY_TYPE</lattice:name>
+                  <lattice:value>EBR</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">PORT_COUNT</lattice:name>
+                  <lattice:value>2</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">ECC_ENABLE</lattice:name>
+                  <lattice:value>False</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">ARBITER_EN</lattice:name>
+                  <lattice:value>False</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">FIFO_STREAMER_EN</lattice:name>
+                  <lattice:value>False</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">FIFO_CLK_BYPASS</lattice:name>
+                  <lattice:value>False</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">FIFO_START_ADDR</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_MEM</lattice:name>
+                  <lattice:value>True</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_CHK</lattice:name>
+                  <lattice:value>hex</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_FILE_FORMAT</lattice:name>
+                  <lattice:value>hex</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_FILE</lattice:name>
+                  <lattice:value>C:/cygwin64/home/VJozsa/adi/fork_hdl/hdl/projects/common/ctpnxe/riscvmc.mem</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">load_file</lattice:name>
+                  <lattice:value>EBR</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_00</lattice:name>
+                  <lattice:value>0x0C8C00E0CF0D0313C430330B033C23030C30CC0C2C81310C1B340F400C1515458210FF3FCFF3FC010x0C4240E8FC2C03032488330490B08B030C30CC021C4B308C43320F22A4E001459088FF3FCFF3FC000x1F8571E4551DC711504537C9715455374C31DCD50C45704CD7310F11740F25400164FF3FCFF3FC030x0BCF7088FF3BC233FCFD22CFF3FCEF32086088FF1ACF23C8322F4AF0E81E0E4C025455140AA2A8020x3BCA7390AA2FCEF0A8B92ECE9288A83E0BE1B8EA138862A4C43E87E08000140710D4FF03CFA150010x23C0B028740CC081041008CC20102134030020C026C101209B34834228A71DC770ECE41384E394020x15401170000445400C211548000000154551545005405204411C05C00000000002000000000000000x334FF31CFF31CCD3F0CF0CC7F3FCFF3CC3C330DF338FC0F0DC03C033F81A2A8A72FC5515455154000x230C73300322CCC0FCBB08C3030C303C81C320CC26C2C3D0850F40F3C415154400040000000000000x0B0C30B0032AC280CCB022C3430C30320A2088CD00C023C8400F0AF3DC000546E33CAA2A8AA2A8000x254C517C372445B1DCB5194703DC7D150551445E24CD53E4B50F44F3E03E15006110052BC052BC000x2F4AF3EC3208CF70B8AF3BC692C82F3F8EF3ECCA3E8EF2BC0F1ACEA1043839C930042208822088000x084B82BCFE308A73A8122206F2F8EE2A09A08818288EA1F8720788B3846B3ACF10000000000000010x2103103CF01940B0004C0840C0D08C1082002040320F00D0A02342308CC8220A412CAA2A8AA2A8020x0045401415000011741C00055154550000000015004701701805C0514800000240480000000000030x3FC373CC3C1DCFF3104B3FCCF0F0CD3FCFF3FCF31F0EF00CF7300F0004EA2A895044FF3FCFF3FC03</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_01</lattice:name>
+                  <lattice:value>0x030F10E0F41F8352C0C42C422088220304B31CF03F00F01CE23FC142ACFC0CC0F084CC230F020CC30x208C80E0F20F09E020C20C088220882302308CCA3C8AC28CC03FC382AC322CC1C228220B0C818C230x1D4550E0F11F4D0114D53C444110551305F35CE53C45C15CD53FC0000C551DCD511455054C415C170x3FCFF1406F34C851F44F24CEE3FCEE310FD3F43F17CE73F43F00014008FF288FF3F8FF3F0BF3C8F60x2E82A3CCFE2F8040E4F22F48A228A82FC2328CE21F08F0ACE83E88400CAA0F8FA2A4A2284A9298E60x0804020434038AE340202202208822048081009001021000FB138301B010220F40880021C10330400x000011445C15C08384540500000000054412046016006014631542400480054700000000461214850x3FCFD31C03108E523C37334FF3FCFF3CC7C0F00F00CF03D02E000151507F330DF3FCFF3FC0F2F03C0x3303B33C0E30C391EC2C12C330CC333C8C43F07F03CD33B03A000E40300F020C30C0CC30C3B3B0EC0x3303A080AE28C510C08C08C330CC33020C23C83C2BCCB3A8302A8440380F188C30C0CC300B0308C20x33C781645E07C911D46C17C771DC77054C53E47D17CC7304752BCC4004DF154771C0DD3D475354D50x05C133FCE63D0203BCE43E411044113F84F13CD73D4BD13CCE0888003CCA3ECF2084882FCEF2FCBF0x3FCFE2B88C2A8092C88F18C330CC332A8F23F80E0ACFA3E83A00020028FB3883E0BC9B2E8922284A0x34C090202312803030220200000000208200D001000D0050BF2A88C030C332070034320C00C0C0300x1545602004204100700500455154551005416016014711A016000000005530015154551501C1C0700x3CCC53DCF11F02A12CF31F0CC330CC1FC3700CC03C00C05CCA3FCA915CF01FCFC33C330DCCB0BC2F</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_02</lattice:name>
+                  <lattice:value>0x3CC933C0B22C4B1108C3200E811487034C0200202846114CB103C112CCB20FC2303033030CC0C87B0x3D0113C8381D87602023290E12600329CD4288010145210C8803C0802C082E08B03833030CC020300x3CC133D4551D4750541F260E5150451D0C0010550000004C050FCE515C561545537437034DF158750x288032BC7D39CE73FCCE0804537CEF3848405095150090D43F2E8FF1F8FE3FCEF31811050473F8DF0x280833E8282C8B22A08F21CE0228B820481040600A4592BC280ECFA0AC28228883F0F33F4FF2A0320x380220C0D3300C0104EC3AC3C00C750AC820589515CF4320D00FCD0300C20502130000348230080C0x14400150C3254953C0152045D15C1C008430800101001054A015470304C00000015055154551001C0x008A701CBE2348D0BC5C1FC1B1D0F73E40715CFF3FCFD2704F3C0CD2F0BF3FCFF3C4CC3CC331FCCB0x0305D030390240B2C4AC31C261B04333832080B0100092F07F3D0F80F03300C303C8C81CC230CC830x2849C2B834080201D80E30C9000493358802C04303CC10C83C3C0FA0C83300C30320222208B0CC630x17009178F4150541D45535451064433907C0C092100011547E1547B0C47731C7D15451154451CC570x084433A8EB3FCFF39CDF2BCFF3F4E1020A00C0C3000101FCE73F4E007C513141F3F4FF2FCFF064F10x0006E034FB288A22C88A0E08E2B09F2000E0C882210480E8BA2A8B23F87F31CFE2A0A21A0881F8A70x2A03A088C101405300B40E40D3402C200A824C20200423C00C1484B010083808C10C082002122CC80x0004401C53304C3254B01700C22445110002D410000003801400017160551545500C0000000154850x3E46D3C4C82F0BD234AF0DCE30DC7C024E2154511008A27C413FCC530CCC3F0CD3F8FF3FCFF330BC</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_03</lattice:name>
+                  <lattice:value>0x000E5180501046E0500631C141006C114100609A014B40C8C60282F0547E21C10098D100C9B0BC2F0x0A4040200921C820005806C01214812006118C24064B22C4DA088AF1E47C06C02308D60940323C8F0x110C51D0551E0110540105C15140111145401011054751C4D41585F2007D15C15054D53E41727C1F0x380833F0F83C45F0FC1533C2C3C45C32C3C1503303CCF28C9E3F084050EB1383E37CB3308061685A0x200222EC222840A328003ACEA2800E2E8A8040A60A4B80C8C82800E058FE06CE0288F620092124CF0x2A00C0CC0808C343080310CC0080340C0080300D00C2820C02010A20CCCE300E22C0F02802C240900x000401844110878140072545110079150500746015C100585430405090D635460080750040D314850x3F0A917C7F1C46337C160DC9F1C46319CDC16CDF3D4F7338372F4F0058422D0DF1BC1D3C8A81C0700x3EC1A3E0F63B8510F8E52ACB63B85A2B4BB258892B07F0202231C10398801B03E2C43B3B450040100x3C0620C4F2310061F0000807230002070B004432284BF0A08136C6A110AB0A87C0D88B31C820A82A0x3DC040D4F1350551F4C5354713705D17077050410445F1445135C5711414164FD1D44735005354940x2B0543BC6F0E0333AC833ECEF2E03F2ECEE030C32F0EA3CCF32783E2043B1FC9B14CBC0C44F0D8B60x3A0102C8FA3886A0F8261A8BE388662BCB8224920A8BF28882320E0080202A87E0D82B2843A2A0A80x0E80D13CF43A0C03F88C334F43A0C43F43A0CC4021023020130008222C49310BE3C0B33AC34000020x1601C2705C1800505800130181800431818000150244510C061545000C03100163542118840140500x0285912C030A89D308A91ECC30A8972C0CA29CFD3CC701F8FE0D0DF2A87D1DCC2234DC0A46737CDF</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_04</lattice:name>
+                  <lattice:value>0x0601508051240632608B3101007CF3254030BC900804B38C8F2C000394EF2CCFF314593847815C850x1A0A0004B60008000C273084223CF4048AB07C822202731CAF2A8AA110CF02CFF378003583520C800x264151485D15C59054573041517CF305C5707C951D05735C9F214AF114FF35CFF380153547515C850x1442D184DF1A8F20146E23CFF3E8A203CFA0E43F3F0FE1B8250F82220CB53F890014372DCED3F80F0x20438208922282024C8A3787A0BCA022C830BC0A0EC2B3AC8B2A000088D91ACFE210E2180A80A4380x0043814000190100B4CC01090000E00C8080C0000CC0C0F0E0248AA23010340C3230CC0C00C000E80x15C400144500441030C91702C05451000011949C084491C4053800000075304551240C19419114D40x164953FC5D37C722A4B80CCCB3400229CFC3805B37C780B07017CFF2A4101F0000149B0B4CB1D0770x04490068091301C158D00F06F2C00C1BCF0200EF3E0F0010F01FCFC16C203D0000E48F00CC03B07F0x0840C180F020061200C22B01F2A8A123CF22281F0C4C2208CA0FCFD3808A3C8AA2403C20C203A83F0x15456254341C4D4014D51705F2105C06CF51545F2D4D5114C51FCFE010753C45B3447C15C153845F0x168B51EC543FCF1134BF3A8FA0F821144AF2FCF937CBF33CBF3600015CFE37CB82805B3F8FF23CCA0x08080288F02E0210E06A0BCAB0A000134FA0A0EF208EA0C8322CCE8148BA3A8200243F08C883289F0x19C48024D42D4080CC1004C30248A80F0302007013C100C01000438334303108A288DD01C413502F0x0041014081020501047C01465380001D4540C0A50705C05060154542781016000000E60C48C160450x37CD437C5F10CD91980B3CC6017CF91B0073BC2012C0B3DC0F10000160DF30CFF3A8903B03B05C70</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_05</lattice:name>
+                  <lattice:value>0x0000010014200010C49906C2217C7C274453182104CFE3E4100CCFC0BC53204FC104830AC28110610x0000000002000000002100C0137C100D004010020A4461442A2CC3C03C39318C125800200C1260A20x30C700A45810001048920CCDD154B5144451181D00CB5084150CC3D17C1D354551D475254D515C450x1ECBA304451000A014B904CFF1FC3D3D44124C0B248212803F288EB3D83A38CFC3CCBF05CD433CEF0x2A88E0808A3C0C4010B512CAE1283A0908E0784231400020380CCBE2BC30178282783A128082E4820x1545A254411E4D40C08B0089E2DCB12684F23020280CC2CC202004C34C0A22050080B02701C000240x0000010003154511C0831000700050238DC33865324903C0000549501440014011141423089154410x3FCF01FCD5214101949D12CFE3FC672D4062546D358AB2A87F330013C0DE134FF1F4F71EC7B1DC7D0x000100005A0ACA23481813C0C008520AC1E2B4C927CC2150FF12040340B1020C6070710441B2C8040x0000000008040400804103C0C000302DC0122019004502E0FF0A8283A837200D8004B6198600205B0x0005F15461264A51F86813C140C4510D4510644501C4D100FF044542547804CD505455054D5144640x2E8FA3A8B91F03D008CD388DC2E8690F417370D702089350AA3ECF21F8C104CCE0F0F30CCFB3C41C0x038C81AC4806869280C82FC0B3F8840E4021289A2C412210E7288230C0A100CC838C8E3B8220B0E10x01CE5080C60909601CC008C070CC5E0CC04090020F0D20C0C31200B0486316CC2388100000C324820x00020000C510000040D80D452158C318C40040000004619055300411801200454104451545C330570x0001F000561FCFF378753E4DC3E87226476194DC2A88E154C00FC7F37CC11FCF737C7D374DB2DCF5</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_06</lattice:name>
+                  <lattice:value>0x20C510C0350C06202C240209600020000A91688A08833044EB034803909C06840390970308D1E8B90x324CC08030008D0080382381C00030000F0114000443300C4318C4C3E0202D4803E0EB030832C0220x3444938430094751541A17C57004700047A0206B19C5E094690049535896148692505403001350C30x34CDE290600C4EE314750705D000F1008DB3903100CED240DF03C881CCCA33C302C0C002C200F8B10x14CA8100320A0910701C114FA04C1D13020154022E41E0907E0284034004290022C8C301C3A1A4550x388462C032050661D08B24C35008FC02CC8298F92986F004A90148011CD906C73010D605CED258AA0x31812034541400009080308F03A410290B4000000000510000160151C0C000C053C4C0254A0000000x184D53D0C017CFF36CDF1D49F1A015280593ECF717CFF06CFF01CCC07CBD3F8F03707D300573FCFF0x2D0880D49410000208340A8C120810020A808071100163B0F2140992180C0202612408368A00C0000x0348001C781000030C31000061240009004200042000C230F3290E710C080303933808090400C0000x15025074D5108513CC72064111746B1749836002104151205F140D1004041103531402140A53D0140x1F026010712002234C37264C711CE90CC542044A3282F330FB000CF28C800F8B31700301050358820x1A08C20020140ED28C150C48E1A402290B426454270E02700E008463B40C0F0F133046234A3324B80x210F82145720098100EB0684024849124D4040110E4851304F1481923C000209622428068F333C530x004C2280000A44437C2706C1500010000FA0BC87190600185501400044561448005059000C4154540x1707A17CFF3A000154E10A84D3FCDF3FCAB094DD1B09F344313C07F30436010DF31C053FCB330088</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_07</lattice:name>
+                  <lattice:value>0x2080B00C68200EA21C023C0BA1408A2800A28800028CB00048040FF038003C4410408D19493018A20x0400300C30100CF10C201C013000200C00C040201101208000040B703400388430C04537C360B0500x144971003514CD525C611549F160431441F154601E44401C06170DF334C0344CF0408F1D492150850x13451180350547F1CCC93C0F5398503C4B43F0E009C03098110E0F60FC952CC553D40D374330702D0x34C060004C10CAC09493280AF204C52F8ED244021C86738086040AB30C003304E1002402062224110x1C419120B5240D93E83114019284411B081198703BC830D007384173340026081240A515491110E40x1C440034C40300F30461124480204305047000273302E384B801C831107D3B4300346800004000C00x2487F31C5B3D8F52FC521D47925085340C53FCDC1ECE917CDB3F47D338D7154DB3D0573FCF13F47D0x20804338C00309A11C721AC2A2808216084000AC39052328310AC03030BE190BC050F00C034010080x38C00030E001021000030F8303E0C028040000C0200001003000C03104353301D014E00C48C0004C0x19C00058441B015018570F0173245415414054550405A11C900A40F1505F1507C1BCD10F0140941D0x11C8237CCC1503C034E70FC31144603CC790C8D7014D73D8F414C153F0F53341C094F41F83C0203D0x30CC222CA822C282AC83108C51B0C42984433CF205492234261D88E1806A2406C000400B029004D50x314431584001C0B008F421407254900249022CD304020118D0264012449513C580143007014020980x1483C2001308C53280333F8D33C08124003110D01280501006100F000C000C80D3000D15462260440x174141FCD1074DA3DCAD1545915C7B17CF40006F0947532CF30BC5B3F0FF3B8B717C7431C1E21806</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_08</lattice:name>
+                  <lattice:value>0x0000000000000000000000000000000000410441150500001015459114523E0FF1F49912C0A208A00x0000000000000000000000000000000000822083120A000CA22B8A00000000055304891000C000840x0000000000000000000000000000000000C314CC1B0F003CC0110D0128B0100E40E0090D814104940x0000000000000000000000000000000000C01006240B0014301C4D006CC6024001AC303CC1C10C120x000000000000000000000000000000000041044105050004511545A240A606015054091C04E028940x000000000000000000000000000000000283208A260A002CF23A8A3120D020C85360472E00C3384C0x0000000000000000000000000000000002C180C3330A0000810E08000000080222D08B0604C058EC0x0000000000000000000000000000000002018407180500000034C7A268A62ACAA1A455364463F8640x00000000000000000000000000000000014100451145001410110511505731CFD2F4D8258C13E8600x0000000000000000000000000000000003A2288B0AC7513CA23A8F0000000445520C301C000204B80x000000000000000000000000000000010163C045014C002051110612A0FD00C900E04415844154210x0000000000000000000000000000000200925043310C510C511300416416248AB0049435CEC3D4710x00000000000000000000000000000300011054441541000010114540A40805014050402203A018000x0000000000000000000000000000030302A2880A18CEA228EB2F8C20D08C220841ACB805022028050x0000000000000000000000000000030000B26C8C0E01F390FF09C100000110474228E103835008640x00000000000000000000000000000300C1801C003CC3009051198162A4AA258A91A4992C4F71F857</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_09</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_0A</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_0B</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_0C</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_0D</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_0E</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_0F</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_10</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_11</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_12</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_13</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_14</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_15</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_16</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_17</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_18</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_19</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_1A</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_1B</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_1C</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_1D</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_1E</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_1F</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_20</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_21</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_22</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_23</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_24</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_25</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_26</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_27</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_28</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_29</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_2A</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_2B</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_2C</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_2D</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_2E</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_2F</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_30</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_31</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_32</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_33</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_34</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_35</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_36</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_37</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_38</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_39</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_3A</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_3B</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_3C</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_3D</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_3E</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_3F</lattice:name>
+                  <lattice:value>0x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x000000000000000000000000000000000000000000000000000000000000000000000000000000000x00000000000000000000000000000000000000000000000000000000000000000000000000000000</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_40</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_41</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_42</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_43</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_44</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_45</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_46</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_47</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_48</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_49</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_4A</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_4B</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_4C</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_4D</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_4E</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_4F</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_50</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_51</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_52</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_53</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_54</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_55</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_56</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_57</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_58</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_59</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_5A</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_5B</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_5C</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_5D</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_5E</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_5F</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_60</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_61</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_62</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_63</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_64</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_65</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_66</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_67</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_68</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_69</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_6A</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_6B</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_6C</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_6D</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_6E</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_6F</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_70</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_71</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_72</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_73</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_74</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_75</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_76</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_77</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_78</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_79</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_7A</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_7B</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_7C</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_7D</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_7E</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">INIT_VALUE_7F</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">REGMODE_S0</lattice:name>
+                  <lattice:value>True</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">RESET_MODE_S0</lattice:name>
+                  <lattice:value>sync</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">BYTE_ENABLE_S0</lattice:name>
+                  <lattice:value>True</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">UNALIGNED_ACCESS_EN_S0</lattice:name>
+                  <lattice:value>False</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">SHIFT_DIRECTION_S0</lattice:name>
+                  <lattice:value>none</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">EDIT_ADDRESS_S0</lattice:name>
+                  <lattice:value>False</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">s0_start</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">S0_START_ADDR</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">s0_end</lattice:name>
+                  <lattice:value>7FFF</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">S0_END_ADDR</lattice:name>
+                  <lattice:value>32767</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">ACCESS_TYPE_S0</lattice:name>
+                  <lattice:value>R/W</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">ADDR_SPACE_S0</lattice:name>
+                  <lattice:value>32768</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">REGMODE_S1</lattice:name>
+                  <lattice:value>True</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">RESET_MODE_S1</lattice:name>
+                  <lattice:value>sync</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">BYTE_ENABLE_S1</lattice:name>
+                  <lattice:value>True</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">UNALIGNED_ACCESS_EN_S1</lattice:name>
+                  <lattice:value>False</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">SHIFT_DIRECTION_S1</lattice:name>
+                  <lattice:value>none</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">EDIT_ADDRESS_S1</lattice:name>
+                  <lattice:value>False</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">s1_start</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">S1_START_ADDR</lattice:name>
+                  <lattice:value>0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">s1_end</lattice:name>
+                  <lattice:value>7FFF</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">S1_END_ADDR</lattice:name>
+                  <lattice:value>32767</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">ACCESS_TYPE_S1</lattice:name>
+                  <lattice:value>R/W</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">u_access_type</lattice:name>
+                  <lattice:value>R/W</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="0">ADDR_SPACE_S1</lattice:name>
+                  <lattice:value>32768</lattice:value>
+               </lattice:configurableParameter>
+            </lattice:configurableParameters>
+         </lattice:ipInstance>
+         <lattice:ipInstance>
+            <lattice:instanceName library="ip" name="uart" vendor="latticesemi.com" version="1.3.0">uart0_inst</lattice:instanceName>
+            <ipxact:memoryMaps>
+               <ipxact:memoryMap>
+                  <ipxact:name>uart_mem_map</ipxact:name>
+                  <ipxact:description>UART memory map</ipxact:description>
+                  <ipxact:addressBlock>
+                     <ipxact:name>UART_Registers</ipxact:name>
+                     <ipxact:baseAddress>0x8000</ipxact:baseAddress>
+                     <ipxact:range>0x400</ipxact:range>
+                     <ipxact:width>32</ipxact:width>
+                  </ipxact:addressBlock>
+               </ipxact:memoryMap>
+            </ipxact:memoryMaps>
+            <lattice:configurableParameters>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="1">SYS_CLK</lattice:name>
+                  <lattice:value>18.0</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="4">DATA_WIDTH</lattice:name>
+                  <lattice:value>8</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="3">STOP_BITS</lattice:name>
+                  <lattice:value>1</lattice:value>
+               </lattice:configurableParameter>
+               <lattice:configurableParameter>
+                  <lattice:name sequence_id="2">BAUD_RATE</lattice:name>
+                  <lattice:value>115200</lattice:value>
+               </lattice:configurableParameter>
+            </lattice:configurableParameters>
+            <lattice:structName>uart_instance</lattice:structName>
+            <lattice:initName>uart_init</lattice:initName>
+            <lattice:headerFile>uart.h</lattice:headerFile>
+            <lattice:interruptPort>IRQ_S0</lattice:interruptPort>
+         </lattice:ipInstance>
+      </lattice:ipInstances>
+      <lattice:memoryRegions>
+         <lattice:memoryRegion>
+            <lattice:name>sysmem0_inst_AHBL_S0</lattice:name>
+            <lattice:instanceName>sysmem0_inst</lattice:instanceName>
+            <lattice:editAddress>False</lattice:editAddress>
+            <lattice:startAddress>0</lattice:startAddress>
+            <lattice:addressSpace>32768</lattice:addressSpace>
+            <lattice:accessType>R/W</lattice:accessType>
+            <lattice:masterPorts>
+               <lattice:masterPort>
+                  <lattice:name>cpu0_inst_AHBL_M0_INSTR</lattice:name>
+                  <lattice:baseAddress>0x0</lattice:baseAddress>
+                  <lattice:range>0x8000</lattice:range>
+               </lattice:masterPort>
+            </lattice:masterPorts>
+         </lattice:memoryRegion>
+         <lattice:memoryRegion>
+            <lattice:name>sysmem0_inst_AHBL_S1</lattice:name>
+            <lattice:instanceName>sysmem0_inst</lattice:instanceName>
+            <lattice:editAddress>False</lattice:editAddress>
+            <lattice:startAddress>0</lattice:startAddress>
+            <lattice:addressSpace>32768</lattice:addressSpace>
+            <lattice:accessType>R/W</lattice:accessType>
+            <lattice:masterPorts>
+               <lattice:masterPort>
+                  <lattice:name>cpu0_inst_AHBL_M1_DATA</lattice:name>
+                  <lattice:baseAddress>0x0</lattice:baseAddress>
+                  <lattice:range>0x8000</lattice:range>
+               </lattice:masterPort>
+            </lattice:masterPorts>
+         </lattice:memoryRegion>
+      </lattice:memoryRegions>
+   </lattice:system>
+</lattice:systemEnv>
