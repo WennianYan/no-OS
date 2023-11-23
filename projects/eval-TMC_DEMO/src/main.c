@@ -147,6 +147,8 @@ int main(void) {
 
 	printf("Hello RISC-V TRINAMIC!\r\n");
 
+	char str[32];
+
 	while (true) {
 //		gpio_output_write(&gpio_inst, idx, pin_state);
 
@@ -160,25 +162,44 @@ int main(void) {
 //      this calls the configuration procedure if it was not yet called. // writeConfiguration(&TMC5130);
 		tmc5130_periodicJob(&tmc5130, systick_getTick());
 //		printf("systick %d\n",systick_getTick());
+//		printf("systick %d\n",tmc5130.velocity);
 
 		if(TMC5130.config->state == CONFIG_READY){
-			//set acceleration
-			tmc5130_writeInt(&tmc5130, TMC5130_AMAX,60000);
-
-			//rotate right with specified velocity
-			tmc5130_right(&tmc5130,200000);
-			wait(2000);
 
 			//set acceleration
 			tmc5130_writeInt(&tmc5130, TMC5130_AMAX,60000);
 
-			//rotate left with specified velocity
-			tmc5130_left(&tmc5130,200000);
-			wait(2000);
+			uart_getc(&uart_core_uart, str);
 
-			tmc5130_stop(&tmc5130);
+			switch(str[0]){
+				case 'w':
+					//rotate right
+					tmc5130_right(&tmc5130,50000);
+					str[0] = 0;
+					printf("rotate right on\n");
+				break;
+				case 's':
+					//stop
+					tmc5130_stop(&tmc5130);
+					str[0] = 0;
+					printf("stop\n");
+				break;
+				case 'a':
+					//rotate left
+					tmc5130_left(&tmc5130,50000);
+					str[0] = 0;
+					printf("rotate left\n");
+				break;
+				case 'd':
+					//rotate right
+					tmc5130_right(&tmc5130,50000);
+					str[0] = 0;
+					printf("rotate right\n");
+				break;
+			}
+
+			wait(10);
 		}
-
 	}
 
 	return 0;
