@@ -223,7 +223,7 @@ void tmc5130_periodicJob(TMC5130TypeDef *tmc5130, uint32_t tick)
 	{
 		XActual = tmc5130_readInt(tmc5130, TMC5130_XACTUAL);
 		// ToDo CHECK 2: API Compatibility - write alternative algorithm w/o floating point? (LH)
-		tmc5130->velocity = (uint32_t) ((float32_t) ((XActual - tmc5130->oldX) / (float32_t) tickDiff) * (float32_t) 1048.576);
+		tmc5130->velocity = (uint32_t) ((float32_t) (abs(XActual - tmc5130->oldX) / (float32_t) tickDiff) * (float32_t) 1048.576);
 
 		tmc5130->oldX     = XActual;
 		tmc5130->oldTick  = tick;

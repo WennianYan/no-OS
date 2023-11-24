@@ -61,8 +61,17 @@ ConfigurationTypeDef *config = &conf;
 #define ROTATE_LEFT 1
 #define ROTATE_RIGHT 2
 
+#define STOP_STATE_ON (1 << 11)
+#define INCREASE_STATE_ON (1 << 12)
+#define DECREACE_STATE_ON (1 << 13)
+
+#define STOP_BUTTON (gpio_status & STOP_STATE_ON)
+#define INCREASE_BUTTON (gpio_status & INCREASE_STATE_ON)
+#define DECREACE_BUTTON (gpio_status & DECREACE_STATE_ON)
+
 struct uart_instance uart_core_uart;
 struct gpio_instance gpio_inst;
+struct gpio_instance gpio1_inst;
 struct spim_instance spi_inst;
 struct i2cm_instance i2c_inst;
 
@@ -104,6 +113,7 @@ int main(void) {
 	//initialize GPIO
 	gpio_inst.instance_name = GPIO0_INST_NAME;
 	gpio_init(&gpio_inst, GPIO0_INST_BASE_ADDR, GPIO0_INST_LINES_NUM, GPIO0_INST_GPIO_DIRS);
+	gpio_init(&gpio1_inst, GPIO1_INST_BASE_ADDR, GPIO1_INST_LINES_NUM, GPIO1_INST_GPIO_DIRS);
 
 	spi_master_init(&spi_inst,
 			SPI0_INST_BASE_ADDR,
@@ -149,26 +159,27 @@ int main(void) {
 	g_stdio_uart = &uart_core_uart;
 #endif
 
+	int32_t stop_state = 0;
+	int32_t	increase_state = 0;
+	int32_t decrease_state = 0;
+    int32_t velocity=0;
+    unsigned int gpio_status = 0;
+
+	// gpio_output_write(&gpio1_inst,2,0x00);
+    gpio_set_direction(&gpio1_inst,11,GPIO_INPUT);
+    gpio_set_direction(&gpio1_inst,12,GPIO_INPUT);
+    gpio_set_direction(&gpio1_inst,13,GPIO_INPUT);
+
 	printf("Hello RISC-V TRINAMIC!\r\n");
 
-	char str[32];
-	int velocity = 10000;
-	int state = ROTATE_RIGHT;
+	char str[1];
 
 	while (true) {
-//		gpio_output_write(&gpio_inst, idx, pin_state);
-
-//		printf("pin_state: %d\n", pin_state);
-
-//		if (++idx == LED_COUNT) {
-//			idx = 0;
-//			pin_state = ~pin_state;
-//		}
+		gpio_input_get(&gpio1_inst,0,&gpio_status);
 
 //      this calls the configuration procedure if it was not yet called. // writeConfiguration(&TMC5130);
 		tmc5130_periodicJob(&tmc5130, systick_getTick());
 //		printf("systick %d\n",systick_getTick());
-//		printf("velocity: %d\n",tmc5130.velocity); //It gives 0 when the
 
 		if(TMC5130.config->state == CONFIG_READY){
 
@@ -180,73 +191,80 @@ int main(void) {
 			switch(str[0]){
 				case 'w':
 					//incrace velocity
-					if(velocity < 200000){
-						velocity += 10000;
-						printf("incrace velocity, ");
-					}
-					switch(state){
-						case STOP:
-							tmc5130_stop(&tmc5130);
-							printf("stop\n");
-						break;
-						case ROTATE_LEFT:
-							tmc5130_left(&tmc5130,velocity);
-							printf("rotate left\n");
-						break;
-						case ROTATE_RIGHT:
-							tmc5130_right(&tmc5130,velocity);
-							printf("rotate right\n");
-						break;
-					}
+					velocity += 8000;
+					tmc5130_rotate(&tmc5130,velocity);
+					printf("increase velocity\n");
 					str[0] = 0;
 				break;
 				case 's':
 					//decrace velocity
-					if(velocity > 0){
-						velocity -= 10000;
-						printf("decrace velocity, ");
-					}
-					switch(state){
-						case STOP:
-							tmc5130_stop(&tmc5130);
-							printf("stop\n");
-						break;
-						case ROTATE_LEFT:
-							tmc5130_left(&tmc5130,velocity);
-							printf("rotate left\n");
-						break;
-						case ROTATE_RIGHT:
-							tmc5130_right(&tmc5130,velocity);
-							printf("rotate right\n");
-						break;
-					}
+					velocity -= 8000;
+					tmc5130_rotate(&tmc5130,velocity);
+					printf("decrease velocity\n");
 					str[0] = 0;
 				break;
 				case 'a':
 					//rotate left
-					tmc5130_left(&tmc5130,velocity);
-					state = ROTATE_LEFT;
+					if(velocity > 0){
+						velocity = -velocity;
+					}
+					tmc5130_rotate(&tmc5130,velocity);
 					str[0] = 0;
 					printf("rotate left\n");
 				break;
 				case 'd':
 					//rotate right
-					tmc5130_right(&tmc5130,velocity);
-					state = ROTATE_RIGHT;
+					if(velocity < 0){
+						velocity = -velocity;
+					}
+					tmc5130_rotate(&tmc5130,velocity);
 					str[0] = 0;
 					printf("rotate right\n");
 				break;
 				case 'q':
 					//stop
 					tmc5130_stop(&tmc5130);
-					state = STOP;
+					velocity = 0;
 					str[0] = 0;
 					printf("stop\n");
 				break;
+				case 'v':
+					//velocity
+					printf("velocity %d\n",tmc5130.velocity);
+					str[0] = 0;
+				break;
 			}
 
-			wait(50);
+//			wait(50);
+
+			if(INCREASE_BUTTON){
+				if(!increase_state){
+					velocity = velocity + 8000;
+					tmc5130_rotate(&tmc5130,velocity);
+					printf("increase velocity\n");
+				}
+			}
+			if(DECREACE_BUTTON){
+				if(!decrease_state){
+					velocity = velocity - 8000;
+					tmc5130_rotate(&tmc5130,velocity);
+					printf("decreace velocity\n");
+				}
+			}
+			if(STOP_BUTTON){
+				if(!stop_state){
+					tmc5130_stop(&tmc5130);
+					velocity = 0;
+					printf("stop\n");
+				}
+			}
+
+			stop_state      = STOP_BUTTON;
+			increase_state  = INCREASE_BUTTON;
+			decrease_state  = DECREACE_BUTTON;
+
 		}
+
 	}
 
 	return 0;
