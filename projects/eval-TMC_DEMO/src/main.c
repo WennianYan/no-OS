@@ -57,6 +57,10 @@ ConfigurationTypeDef *config = &conf;
 
 #define TMC5130 tmc5130
 
+#define STOP 0
+#define ROTATE_LEFT 1
+#define ROTATE_RIGHT 2
+
 struct uart_instance uart_core_uart;
 struct gpio_instance gpio_inst;
 struct spim_instance spi_inst;
@@ -148,6 +152,8 @@ int main(void) {
 	printf("Hello RISC-V TRINAMIC!\r\n");
 
 	char str[32];
+	int velocity = 10000;
+	int state = ROTATE_RIGHT;
 
 	while (true) {
 //		gpio_output_write(&gpio_inst, idx, pin_state);
@@ -162,7 +168,7 @@ int main(void) {
 //      this calls the configuration procedure if it was not yet called. // writeConfiguration(&TMC5130);
 		tmc5130_periodicJob(&tmc5130, systick_getTick());
 //		printf("systick %d\n",systick_getTick());
-//		printf("systick %d\n",tmc5130.velocity);
+//		printf("velocity: %d\n",tmc5130.velocity); //It gives 0 when the
 
 		if(TMC5130.config->state == CONFIG_READY){
 
@@ -173,32 +179,73 @@ int main(void) {
 
 			switch(str[0]){
 				case 'w':
-					//rotate right
-					tmc5130_right(&tmc5130,50000);
+					//incrace velocity
+					if(velocity < 200000){
+						velocity += 10000;
+						printf("incrace velocity, ");
+					}
+					switch(state){
+						case STOP:
+							tmc5130_stop(&tmc5130);
+							printf("stop\n");
+						break;
+						case ROTATE_LEFT:
+							tmc5130_left(&tmc5130,velocity);
+							printf("rotate left\n");
+						break;
+						case ROTATE_RIGHT:
+							tmc5130_right(&tmc5130,velocity);
+							printf("rotate right\n");
+						break;
+					}
 					str[0] = 0;
-					printf("rotate right on\n");
 				break;
 				case 's':
-					//stop
-					tmc5130_stop(&tmc5130);
+					//decrace velocity
+					if(velocity > 0){
+						velocity -= 10000;
+						printf("decrace velocity, ");
+					}
+					switch(state){
+						case STOP:
+							tmc5130_stop(&tmc5130);
+							printf("stop\n");
+						break;
+						case ROTATE_LEFT:
+							tmc5130_left(&tmc5130,velocity);
+							printf("rotate left\n");
+						break;
+						case ROTATE_RIGHT:
+							tmc5130_right(&tmc5130,velocity);
+							printf("rotate right\n");
+						break;
+					}
 					str[0] = 0;
-					printf("stop\n");
 				break;
 				case 'a':
 					//rotate left
-					tmc5130_left(&tmc5130,50000);
+					tmc5130_left(&tmc5130,velocity);
+					state = ROTATE_LEFT;
 					str[0] = 0;
 					printf("rotate left\n");
 				break;
 				case 'd':
 					//rotate right
-					tmc5130_right(&tmc5130,50000);
+					tmc5130_right(&tmc5130,velocity);
+					state = ROTATE_RIGHT;
 					str[0] = 0;
 					printf("rotate right\n");
 				break;
+				case 'q':
+					//stop
+					tmc5130_stop(&tmc5130);
+					state = STOP;
+					str[0] = 0;
+					printf("stop\n");
+				break;
 			}
 
-			wait(10);
+			wait(50);
 		}
 	}
 
