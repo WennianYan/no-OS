@@ -49,6 +49,7 @@
 #include "spi_master.h"
 #include <stdlib.h>
 #include "tmc/ic/TMC5130/TMC5130.h"
+#include "tmc/ic/TMC4671/TMC4671.h"
 #include "hal/Systick.h"
 
 TMC5130TypeDef tmc5130;
@@ -106,14 +107,31 @@ void tmc5130_readWriteArray(uint8_t channel, uint8_t *data, size_t length)
 	spi_master_readwrite(&spi_inst, data, length);
 }
 
+uint8_t tmc4671_readwriteByte(uint8_t motor, uint8_t data, uint8_t lastTransfer){
+	//Use SPI_EN_ENABLE in spi_master_config when using spi_master_readwrite_byte
+	return spi_master_readwrite_byte(&spi_inst, data, lastTransfer);
+}
+
+uint8_t tmc6100_readwriteByte(uint8_t motor, uint8_t data, uint8_t lastTransfer){
+	//Use SPI_EN_ENABLE in spi_master_config when using spi_master_readwrite_byte
+	return spi_master_readwrite_byte(&spi_inst, data, lastTransfer);
+}
+
 int main(void) {
 	static uint8_t idx = 0;
 	static uint8_t pin_state = 0xFF;
 
 	//initialize GPIO
 	gpio_inst.instance_name = GPIO0_INST_NAME;
-	gpio_init(&gpio_inst, GPIO0_INST_BASE_ADDR, GPIO0_INST_LINES_NUM, GPIO0_INST_GPIO_DIRS);
-	gpio_init(&gpio1_inst, GPIO1_INST_BASE_ADDR, GPIO1_INST_LINES_NUM, GPIO1_INST_GPIO_DIRS);
+	gpio_init(&gpio_inst,
+			GPIO0_INST_BASE_ADDR,
+			GPIO0_INST_LINES_NUM,
+			GPIO0_INST_GPIO_DIRS);
+
+	gpio_init(&gpio1_inst,
+			GPIO1_INST_BASE_ADDR,
+			GPIO1_INST_LINES_NUM,
+			GPIO1_INST_GPIO_DIRS);
 
 	spi_master_init(&spi_inst,
 			SPI0_INST_BASE_ADDR,
@@ -128,7 +146,8 @@ int main(void) {
 			SPI0_INST_PRESCALER,
 			SPI0_INST_CPOL,
 			SPI0_INST_CPHA,
-			SPI_SSNP_DISABLE);
+			SPI_SSNP_DISABLE,
+			SPI_EN_DISABLE);
 
 #if _UART_ENABLE_INTERRUPTS_
 	//setup uart IRQ
@@ -177,9 +196,9 @@ int main(void) {
 	while (true) {
 		gpio_input_get(&gpio1_inst,0,&gpio_status);
 
-//      this calls the configuration procedure if it was not yet called. // writeConfiguration(&TMC5130);
+		//this calls the configuration procedure if it was not yet called. // writeConfiguration(&TMC5130);
 		tmc5130_periodicJob(&tmc5130, systick_getTick());
-//		printf("systick %d\n",systick_getTick());
+		//printf("systick %d\n",systick_getTick());
 
 		if(TMC5130.config->state == CONFIG_READY){
 
@@ -195,14 +214,14 @@ int main(void) {
 					tmc5130_rotate(&tmc5130,velocity);
 					printf("increase velocity\n");
 					str[0] = 0;
-				break;
+					break;
 				case 's':
 					//decrace velocity
 					velocity -= 8000;
 					tmc5130_rotate(&tmc5130,velocity);
 					printf("decrease velocity\n");
 					str[0] = 0;
-				break;
+					break;
 				case 'a':
 					//rotate left
 					if(velocity > 0){
@@ -211,7 +230,7 @@ int main(void) {
 					tmc5130_rotate(&tmc5130,velocity);
 					str[0] = 0;
 					printf("rotate left\n");
-				break;
+					break;
 				case 'd':
 					//rotate right
 					if(velocity < 0){
@@ -220,22 +239,22 @@ int main(void) {
 					tmc5130_rotate(&tmc5130,velocity);
 					str[0] = 0;
 					printf("rotate right\n");
-				break;
+					break;
 				case 'q':
 					//stop
 					tmc5130_stop(&tmc5130);
 					velocity = 0;
 					str[0] = 0;
 					printf("stop\n");
-				break;
+					break;
 				case 'v':
 					//velocity
 					printf("velocity %d\n",tmc5130.velocity);
 					str[0] = 0;
-				break;
+					break;
 			}
 
-//			wait(50);
+			//wait(50);
 
 			if(INCREASE_BUTTON){
 				if(!increase_state){
@@ -264,6 +283,13 @@ int main(void) {
 			decrease_state  = DECREACE_BUTTON;
 
 		}
+
+		//Use SPI_EN_ENABLE in spi_master_config when using spi_master_readwrite_byte
+		//uint8_t data = 0;
+		//spi_master_readwrite_byte(&spi_inst, 0xff, 0);
+		//data = spi_master_readwrite_byte(&spi_inst, 0xff, 1);
+		//printf("data: %u\n", data);
+		//wait(50);
 
 	}
 
