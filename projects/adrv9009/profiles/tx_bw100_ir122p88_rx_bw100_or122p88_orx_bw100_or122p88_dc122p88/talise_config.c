@@ -202,7 +202,7 @@ taliseInit_t talInit = {
 			.orx2MinGainIndex = 195
 		},
 		.framerSel = TAL_FRAMER_B,                /* ObsRx JESD204b framer configuration */
-		.obsRxChannelsEnable = TAL_ORX1ORX2,        /* The desired ObsRx Channels to enable during initialization */
+		.obsRxChannelsEnable = TAL_ORX1,        /* The desired ObsRx Channels to enable during initialization */
 		.obsRxLoSource = TAL_OBSLO_RF_PLL                /* The ORx mixers can use the TX_PLL */
 	},
 
