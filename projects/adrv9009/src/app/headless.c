@@ -206,6 +206,13 @@ int main(void)
 	};
 	struct axi_adc *rx_adc;
 
+	struct axi_adc_init orx_adc_init = {
+		"orx_adc",
+		RX_OS_CORE_BASEADDR,
+		TALISE_NUM_CHANNELS
+	};
+	struct axi_adc *orx_adc;
+
 	struct axi_dac_init tx_dac_init = {
 		"tx_dac",
 		TX_CORE_BASEADDR,
@@ -221,6 +228,13 @@ int main(void)
 		IRQ_DISABLED
 	};
 	struct axi_dmac *rx_dmac;
+
+	struct axi_dmac_init orx_dmac_init = {
+		"orx_dmac",
+		ORX_DMA_BASEADDR,
+		IRQ_DISABLED
+	};
+	struct axi_dmac *orx_dmac;
 
 	struct axi_dmac_init tx_dmac_init = {
 		"tx_dmac",
@@ -355,6 +369,13 @@ int main(void)
 	}
 
 #endif
+
+	status = axi_adc_init(&orx_adc, &orx_adc_init);
+	if (status) {
+		printf("OBS axi_adc_init() failed with status %d\n", status);
+		goto error_3;
+	}
+
 #ifndef ADRV9008_1
 	status = axi_dmac_init(&tx_dmac, &tx_dmac_init);
 	if (status) {
@@ -370,6 +391,12 @@ int main(void)
 		goto error_3;
 	}
 #endif
+
+	status = axi_dmac_init(&orx_dmac, &orx_dmac_init);
+	if (status) {
+		printf("OBS axi_dmac_init() rx init error: %d\n", status);
+		goto error_3;
+	}
 
 #ifdef DMA_EXAMPLE
 	gpio_init_plddrbypass.extra = &hal_gpio_param;
@@ -431,8 +458,7 @@ int main(void)
 		// Address of data destination
 		.dest_addr = (uintptr_t)(DDR_MEM_BASEADDR + 0x800000)
 	};
-	axi_dmac_transfer_start(rx_dmac, &transfer_rx);
-	status = axi_dmac_transfer_wait_completion(rx_dmac, 500);
+	axi_dmac_transfer_start(orx_dmac, &transfer_rx);
 	if(status)
 		return status;
 #ifndef ALTERA_PLATFORM
