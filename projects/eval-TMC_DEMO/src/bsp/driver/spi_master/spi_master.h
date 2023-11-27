@@ -56,6 +56,9 @@
 #define SPI_IRQ_DISABLE 0
 #define SPI_IRQ_ENABLE 1
 
+#define SPI_EN_ENABLE 1
+#define SPI_EN_DISABLE 0
+
 typedef enum
 {
 	SPIM_STATE_IDLE = 0,
@@ -68,29 +71,29 @@ typedef enum
 
 typedef enum
 {
-    SPIM_DATA_WIDTH_8BIT = 0,
-    SPIM_DATA_WIDTH_16BIT,
-    SPIM_DATA_WIDTH_24BIT,
-    SPIM_DATA_WIDTH_32BIT,
+	SPIM_DATA_WIDTH_8BIT = 0,
+	SPIM_DATA_WIDTH_16BIT,
+	SPIM_DATA_WIDTH_24BIT,
+	SPIM_DATA_WIDTH_32BIT,
 }spim_data_width;
 
 struct spim_instance
 {
-    const char* instance_name;
-    uint32_t base_address;              // spi master base address assigned
-    uint8_t  data_width;                //
-    uint8_t  slave_count;               // number of slave select lines
-    uint16_t sys_clk;                   // system clock frequency 10-400Mhz
-    uint16_t spi_desired_clk;           // 0.01-100Mhz
-    uint16_t clk_prescaler;             // system clock divider
-    uint16_t spi_actual_clk;            // actual clock = system clock /(clock prescable x 2)
-    uint8_t  interrupts_en_bits;        // TX_BUFFER_EMPTY, TX_BUFFER_NOT_FULL,
-                                        // RX_BUFFER_NOT_EMPTY, RX_BUFFER_FULL
-    uint8_t  spi_clk_polarity;          //
-    uint8_t  spi_clk_phase;             //
-//    bool     is_tx_buf_not_full;        //
-//    bool     is_rx_buf_not_empty;       //
-    uint8_t  spim_current_state;        // IDLE, READ, WRITE,
+	const char* instance_name;
+	uint32_t base_address;              // spi master base address assigned
+	uint8_t  data_width;                //
+	uint8_t  slave_count;               // number of slave select lines
+	uint16_t sys_clk;                   // system clock frequency 10-400Mhz
+	uint16_t spi_desired_clk;           // 0.01-100Mhz
+	uint16_t clk_prescaler;             // system clock divider
+	uint16_t spi_actual_clk;            // actual clock = system clock /(clock prescable x 2)
+	uint8_t  interrupts_en_bits;        // TX_BUFFER_EMPTY, TX_BUFFER_NOT_FULL,
+					    // RX_BUFFER_NOT_EMPTY, RX_BUFFER_FULL
+	uint8_t  spi_clk_polarity;          //
+	uint8_t  spi_clk_phase;             //
+					    //    bool     is_tx_buf_not_full;        //
+					    //    bool     is_rx_buf_not_empty;       //
+	uint8_t  spim_current_state;        // IDLE, READ, WRITE,
 };
 
 
@@ -123,12 +126,12 @@ struct spim_instance
  *****************************************************************************
  */
 uint8_t spi_master_init(struct spim_instance *this_spim,
-                       uint32_t base_addr,
-                       uint8_t  slave_count,
-                       uint8_t  data_width,
-                       uint8_t  clk_polarity,
-                       uint8_t  clk_phase,
-                       uint8_t  interrupts_en);
+		uint32_t base_addr,
+		uint8_t  slave_count,
+		uint8_t  data_width,
+		uint8_t  clk_polarity,
+		uint8_t  clk_phase,
+		uint8_t  interrupts_en);
 
 /*
  *****************************************************************************
@@ -161,11 +164,12 @@ uint8_t spi_master_init(struct spim_instance *this_spim,
  *****************************************************************************
  */
 uint8_t spi_master_config(struct spim_instance *this_spim,
-              spim_data_width data_width,
-              uint16_t prescaler,
-              uint8_t clk_polarity,
-              uint8_t clk_phase,
-			  uint8_t ssnp);
+		spim_data_width data_width,
+		uint16_t prescaler,
+		uint8_t clk_polarity,
+		uint8_t clk_phase,
+		uint8_t ssnp,
+		uint8_t spi_enable);
 
 /*
  *****************************************************************************
@@ -195,15 +199,20 @@ uint8_t spi_master_config(struct spim_instance *this_spim,
  */
 
 uint8_t spi_master_transfer(struct spim_instance *this_spim,
-                         uint32_t  *data_buffer_out,
-                         uint32_t byte_out_size,
-                         uint32_t  *data_buffer_in,
-                         uint32_t byte_in_size);
+		uint32_t  *data_buffer_out,
+		uint32_t byte_out_size,
+		uint32_t  *data_buffer_in,
+		uint32_t byte_in_size);
 
 /* NEW ADI CODE partially modified, based on spi_master_transfer. */
 uint8_t spi_master_readwrite(struct spim_instance *this_spim,
-                         uint8_t  *data_buffer,
-                         uint32_t bytes);
+		uint8_t  *data_buffer,
+		uint32_t bytes);
+
+/* NEW ADI CODE partially modified, based on spi_master_transfer. */
+uint8_t spi_master_readwrite_byte(struct spim_instance *this_spim,
+		uint8_t data_out,
+		uint8_t last_transfer);
 
 
 uint8_t spi_device_select(struct spim_instance *this_spim, uint8_t enable_slave);

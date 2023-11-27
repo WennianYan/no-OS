@@ -46,6 +46,7 @@
 #define SPI_MASTER_SLAVE_SEL                      (0x01 * 4)
 
 #define SPI_MASTER_SPI_CFG                        (0x02 * 4)
+        #define SPI_CFG_SPI_EN_MASK        (0x80)
         #define SPI_CFG_WR_ONLY            (0x20)
         #define SPI_CFG_DATA_WIDTH_MASK    (0x18)
         #define SPI_CFG_SSNP_MASK          (0x04)
