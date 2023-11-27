@@ -162,13 +162,13 @@ int main(void) {
 	int32_t stop_state = 0;
 	int32_t	increase_state = 0;
 	int32_t decrease_state = 0;
-    int32_t velocity=0;
-    unsigned int gpio_status = 0;
+	int32_t velocity=0;
+	unsigned int gpio_status = 0;
 
 	// gpio_output_write(&gpio1_inst,2,0x00);
-    gpio_set_direction(&gpio1_inst,11,GPIO_INPUT);
-    gpio_set_direction(&gpio1_inst,12,GPIO_INPUT);
-    gpio_set_direction(&gpio1_inst,13,GPIO_INPUT);
+	gpio_set_direction(&gpio1_inst,11,GPIO_INPUT);
+	gpio_set_direction(&gpio1_inst,12,GPIO_INPUT);
+	gpio_set_direction(&gpio1_inst,13,GPIO_INPUT);
 
 	printf("Hello RISC-V TRINAMIC!\r\n");
 
